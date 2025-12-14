@@ -1,4 +1,6 @@
 import React from 'react'
+import bannerVideo from '/src/assets/videos/banner-video.mp4'
+import posterImg from '/src/assets/images/restaurant-menu-1.jpg'
 
 const Hero = () => {
   return (
@@ -10,9 +12,9 @@ const Hero = () => {
           muted
           loop
           playsInline
-          poster="/src/assets/images/placeholder-2.webp"
+          poster={posterImg}
         >
-          <source src="/src/assets/videos/banner-video.mp4" type="video/mp4" />
+          <source src={bannerVideo} type="video/mp4" />
           Tu navegador no soporta el elemento video.
         </video>
         <div className="hero__overlay"></div>
