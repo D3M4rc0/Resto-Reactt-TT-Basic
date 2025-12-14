@@ -1,0 +1,1101 @@
+.home-page {
+  min-height: 100vh;
+}
+
+// Hero Section
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &__video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(26, 26, 26, 0.9) 0%,
+      rgba(26, 26, 26, 0.7) 50%,
+      rgba(26, 26, 26, 0.9) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__text {
+    max-width: 600px;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+
+    @include responsive(lg) {
+      font-size: 3rem;
+    }
+
+    @include responsive(md) {
+      font-size: 2.5rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 2rem;
+    }
+  }
+
+  &__title-accent {
+    color: $accent-gold;
+    display: block;
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+
+    @include responsive(md) {
+      font-size: 1.1rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 1rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+
+    @include responsive(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    &--primary {
+      background: $accent-gold;
+      color: $primary-bg;
+
+      &:hover {
+        background: darken($accent-gold, 10%);
+        transform: translateY(-2px);
+      }
+    }
+
+    &--secondary {
+      border-color: $accent-gold;
+      color: $accent-gold;
+
+      &:hover {
+        background: $accent-gold;
+        color: $primary-bg;
+      }
+    }
+
+    @include responsive(sm) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__features {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    @include responsive(sm) {
+      gap: 1rem;
+    }
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $text-primary;
+    font-weight: 500;
+
+    @include responsive(xs) {
+      flex: 1;
+      min-width: 140px;
+    }
+  }
+
+  &__feature-icon {
+    font-size: 1.5rem;
+  }
+}
+
+// Secciones comunes
+.specialties-section,
+.offers-section,
+.menu-section,
+.home-page {
+  min-height: 100vh;
+}
+
+// Hero Section
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &__video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(26, 26, 26, 0.9) 0%,
+      rgba(26, 26, 26, 0.7) 50%,
+      rgba(26, 26, 26, 0.9) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__text {
+    max-width: 600px;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+
+    @include responsive(lg) {
+      font-size: 3rem;
+    }
+
+    @include responsive(md) {
+      font-size: 2.5rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 2rem;
+    }
+  }
+
+  &__title-accent {
+    color: $accent-gold;
+    display: block;
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+
+    @include responsive(md) {
+      font-size: 1.1rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 1rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+
+    @include responsive(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    &--primary {
+      background: $accent-gold;
+      color: $primary-bg;
+
+      &:hover {
+        background: darken($accent-gold, 10%);
+        transform: translateY(-2px);
+      }
+    }
+
+    &--secondary {
+      border-color: $accent-gold;
+      color: $accent-gold;
+
+      &:hover {
+        background: $accent-gold;
+        color: $primary-bg;
+      }
+    }
+
+    @include responsive(sm) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__features {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    @include responsive(sm) {
+      gap: 1rem;
+    }
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $text-primary;
+    font-weight: 500;
+
+    @include responsive(xs) {
+      flex: 1;
+      min-width: 140px;
+    }
+  }
+
+  &__feature-icon {
+    font-size: 1.5rem;
+  }
+}
+
+// Secciones comunes
+.specialties-section,
+.offers-section,
+.menu-section,
+.reviews-section,
+.contact-section {
+  padding: 5rem 0;
+
+  @include responsive(md) {
+    padding: 3rem 0;
+  }
+}
+
+.section-title {
+  font-family: $font-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $accent-gold;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @include responsive(md) {
+    font-size: 2rem;
+  }
+
+  @include responsive(sm) {
+    font-size: 1.75rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+
+  @include responsive(md) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+// Carousels - MANTIENE ESPECIALIDADES Y OFERTAS
+.specialties-carousel,
+.offers-carousel {
+  position: relative;
+  margin: 2rem 0;
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: $text-primary;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: $accent-gold;
+      color: $primary-bg;
+      border-color: $accent-gold;
+    }
+
+    &--prev {
+      left: -25px;
+
+      @include responsive(lg) {
+        left: 10px;
+      }
+    }
+
+    &--next {
+      right: -25px;
+
+      @include responsive(lg) {
+        right: 10px;
+      }
+    }
+
+    @include responsive(lg) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.specialties-grid,
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @include responsive(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.carousel-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &--active {
+    background: $accent-gold;
+    transform: scale(1.2);
+  }
+
+  &:hover {
+    background: rgba(212, 175, 55, 0.6);
+  }
+}
+
+.carousel-counter {
+  text-align: center;
+  color: $text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+// Sección de Especialidades
+.specialties-header,
+.offers-header,
+.menu-section-header,
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+// Sección de Ofertas
+.offers-title-container,
+.menu-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.offers-badge,
+.menu-badge {
+  background: $accent-orange;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.offer-card {
+  position: relative;
+  background: $secondary-bg;
+  border-radius: 12px;
+  overflow: hidden;
+  @include hover-lift;
+
+  .offer-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: $accent-orange;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .offer-price-comparison {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1.25rem 1rem;
+  }
+
+  .offer-original-price {
+    color: $text-muted;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+  }
+
+  .offer-discount-price {
+    color: $accent-orange;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .offer-timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1.25rem 1.25rem;
+    color: $text-muted;
+    font-size: 0.8rem;
+
+    .timer-icon {
+      color: $accent-orange;
+    }
+  }
+}
+
+.offers-banner {
+  background: linear-gradient(135deg, $accent-gold, darken($accent-gold, 15%));
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 3rem;
+  color: $primary-bg;
+  text-align: center;
+
+  .offers-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @include responsive(md) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .banner-text {
+    flex: 1;
+
+    h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+
+  .banner-actions {
+    .btn {
+      background: $primary-bg;
+      color: $accent-gold;
+      border: none;
+
+      &:hover {
+        background: darken($primary-bg, 5%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.no-offers {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: $text-muted;
+
+  &-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+  }
+}
+// ==========================================
+// SECCIÓN DE REVIEWS - NUEVO DISEÑO
+// ==========================================
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.reviews-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.reviews-rating-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  
+  .average-rating {
+    font-size: 3rem;
+    font-weight: 700;
+    color: $accent-gold;
+    font-family: $font-serif;
+  }
+  
+  .rating-stars-large {
+    font-size: 1.5rem;
+    color: $accent-gold;
+  }
+  
+  .reviews-count {
+    color: $text-muted;
+    font-size: 0.95rem;
+  }
+}
+
+// Carrusel de reviews
+.reviews-carousel {
+  position: relative;
+  margin: 2rem 0;
+  width: 100%;
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.15);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    color: $accent-gold;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    &:hover:not(:disabled) {
+      background: $accent-gold;
+      color: $primary-bg;
+      border-color: $accent-gold;
+      transform: translateY(-50%) scale(1.15);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
+
+    &--prev {
+      left: -25px;
+
+      @include responsive(lg) {
+        left: 5px;
+      }
+    }
+
+    &--next {
+      right: -25px;
+
+      @include responsive(lg) {
+        right: 5px;
+      }
+    }
+
+    @include responsive(lg) {
+      width: 45px;
+      height: 45px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Grid de reviews - ARREGLADO PARA TODO EL ANCHO
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 0 70px;
+  width: 100%;
+
+  @include responsive(lg) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0 60px;
+  }
+
+  @include responsive(md) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 20px;
+  }
+}
+
+// Tarjetas de review - COLOR DIFERENTE Y MEJOR DISEÑO
+.review-card {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  border-radius: 16px;
+  padding: 1.75rem;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+  // Efecto de brillo
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.1) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.5);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Header con avatar y nombre
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .reviewer-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .reviewer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $accent-gold, darken($accent-gold, 15%));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $primary-bg;
+    flex-shrink: 0;
+  }
+
+  .reviewer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .reviewer-name {
+    font-weight: 600;
+    color: $text-primary;
+    font-size: 1.05rem;
+  }
+
+  .review-date {
+    color: $text-muted;
+    font-size: 0.85rem;
+  }
+
+  .review-badge-verified {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid rgba(76, 175, 80, 0.4);
+    flex-shrink: 0;
+  }
+
+  // Rating
+  .review-rating-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .review-rating {
+    display: flex;
+    gap: 0.15rem;
+    font-size: 1.3rem;
+    color: $accent-gold;
+  }
+
+  .review-rating-number {
+    color: $accent-gold;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  // Comentario
+  .review-comment-container {
+    margin-bottom: 0;
+  }
+
+  .review-comment {
+    color: $text-secondary;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -0.25rem;
+      color: rgba(212, 175, 55, 0.4);
+      font-size: 2.5rem;
+      font-family: $font-serif;
+      line-height: 1;
+    }
+  }
+}
+
+// Distribución de calificaciones
+.rating-breakdown-container {
+  background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+
+  .breakdown-title {
+    font-family: $font-serif;
+    font-size: 1.5rem;
+    color: $text-primary;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+}
+
+.rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rating-stars-small {
+  display: flex;
+  gap: 0.15rem;
+  font-size: 1rem;
+  color: $accent-gold;
+  min-width: 120px;
+}
+
+.bar-container {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  height: 12px;
+  overflow: hidden;
+  position: relative;
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $accent-gold 0%, lighten($accent-gold, 10%) 100%);
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  }
+}
+
+.rating-count {
+  color: $text-secondary;
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+// Indicadores del carrusel (sobreescribe los generales)
+.reviews-carousel {
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 2.5rem 0 2rem;
+  }
+
+  .carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--active {
+      background: $accent-gold;
+      transform: scale(1.4);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+    }
+
+    &:hover:not(&--active) {
+      background: rgba(212, 175, 55, 0.5);
+      transform: scale(1.2);
+    }
+  }
+}
+
+// Sin reseñas
+.no-reviews {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: $text-muted;
+
+  &-icon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+  }
+
+  h3 {
+    color: $text-primary;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+  }
+}
+
+// CTA Banner
+.reviews-cta-banner {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(0, 123, 255, 0.1) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+
+  .cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @include responsive(md) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .cta-text {
+    flex: 1;
+
+    h3 {
+      color: $text-primary;
+      font-size: 1.75rem;
+      font-family: $font-serif;
+      margin: 0 0 0.5rem 0;
+
+      @include responsive(md) {
+        font-size: 1.5rem;
+      }
+    }
+
+    p {
+      color: $text-secondary;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+  }
+
+  .cta-actions {
+    .btn {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      white-space: nowrap;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      }
+    }
+  }
+}
+
+// Animación de entrada
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-card {
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+
+
+
+

@@ -1,0 +1,31 @@
+// Colores
+$primary-bg: #1a1a1a;
+$secondary-bg: #2d2d2d;
+$accent-gold: #D4AF37;
+$accent-blue: #007BFF;
+$accent-orange: #ED5E0E;
+$text-primary: #ffffff;
+$text-secondary: #cccccc;
+$text-muted: #888888;
+
+// Tipografía
+$font-serif: 'Georgia', 'Times New Roman', serif;
+$font-sans: 'Arial', 'Helvetica', sans-serif;
+
+// Espaciado
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Efectos
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+$transition: all 0.3s ease;

@@ -1,0 +1,777 @@
+// src/styles/components/_contact.scss
+.contact-section {
+  padding: 5rem 0;
+  background: $primary-bg;
+  min-height: 100vh;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  .section-title {
+    font-family: $font-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $accent-gold;
+    margin-bottom: 1rem;
+
+    @include responsive(md) {
+      font-size: 2rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 1.75rem;
+    }
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+
+    @include responsive(md) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    height: auto;
+  }
+}
+
+// Columnas con misma altura
+.contact-left-column,
+.contact-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+}
+
+// Tarjeta de Servicios Exclusivos
+.exclusive-services-card {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $accent-gold, darken($accent-gold, 20%));
+    z-index: 1;
+  }
+  
+  .exclusive-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    
+    .exclusive-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: $accent-gold;
+      filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.4));
+    }
+    
+    h3 {
+      color: $text-primary;
+      font-size: 1.75rem;
+      font-family: $font-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .exclusive-subtitle {
+      color: $text-secondary;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+  }
+}
+
+.exclusive-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  
+  @include responsive(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.exclusive-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .service-icon {
+    font-size: 1.75rem;
+    width: 50px;
+    height: 50px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $accent-gold;
+    flex-shrink: 0;
+  }
+  
+  .service-details {
+    h4 {
+      color: $text-primary;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+    
+    p {
+      color: $text-secondary;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+}
+
+.exclusive-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: $text-primary;
+    font-size: 1rem;
+    
+    .benefit-check {
+      color: $accent-gold;
+      font-weight: bold;
+      font-size: 1.2rem;
+      width: 24px;
+      height: 24px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Formulario de Contacto - Ahora más compacto
+.contact-form-container {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  flex-grow: 1;
+  
+  .form-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    h3 {
+      color: $accent-gold;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-family: $font-serif;
+      font-weight: 700;
+    }
+    
+    p {
+      color: $text-secondary;
+      font-size: 0.95rem;
+    }
+  }
+  
+  .contact-form {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      
+      @include responsive(sm) {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: $text-primary;
+        font-size: 0.95rem;
+        
+        &::after {
+          content: ' *';
+          color: #ff6b6b;
+        }
+      }
+      
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: $text-primary;
+        transition: all 0.3s ease;
+        
+        &::placeholder {
+          color: $text-muted;
+        }
+        
+        &:focus {
+          outline: none;
+          border-color: $accent-gold;
+          background: rgba(212, 175, 55, 0.05);
+          box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+        
+        &.error {
+          border-color: #ff6b6b;
+          background: rgba(255, 107, 107, 0.05);
+          
+          &:focus {
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+          }
+        }
+      }
+      
+      // ESTILOS ESPECÍFICOS PARA EL SELECT (CORREGIDOS)
+      select {
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: $text-primary;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        appearance: none;
+        
+        // Fondo oscuro y flecha personalizada
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 16px;
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        
+        // Estilo del texto
+        &,
+        & option {
+          color: $text-primary !important;
+        }
+        
+        // Estilo de las opciones en el dropdown
+        option {
+          background: #2a2a2a;
+          color: $text-primary;
+          padding: 12px;
+          font-size: 0.95rem;
+          
+          &:hover,
+          &:focus,
+          &:checked {
+            background: rgba(212, 175, 55, 0.3) !important;
+            color: $accent-gold !important;
+          }
+        }
+        
+        // Para Firefox
+        &:-moz-focusring {
+          color: transparent;
+          text-shadow: 0 0 0 $text-primary;
+        }
+        
+        // Para IE
+        &::-ms-expand {
+          display: none;
+        }
+        
+        &:focus {
+          outline: none;
+          border-color: $accent-gold;
+          background: rgba(212, 175, 55, 0.05);
+          box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 1rem center;
+          background-size: 16px;
+        }
+        
+        &.error {
+          border-color: #ff6b6b;
+          background: rgba(255, 107, 107, 0.05);
+          
+          &:focus {
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+          }
+        }
+      }
+      
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.6;
+      }
+      
+      .error-text {
+        display: block;
+        margin-top: 0.4rem;
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+    
+    .error-message {
+      background: rgba(255, 107, 107, 0.1);
+      color: #ff6b6b;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+}
+
+.contact-submit {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: $accent-gold;
+  color: $primary-bg;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+  
+  &:hover:not(:disabled) {
+    background: darken($accent-gold, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}
+
+// Tarjetas de la columna derecha
+.contact-info-card,
+.contact-map-card {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  
+  .card-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    h3, h4 {
+      color: $accent-gold;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-family: $font-serif;
+      font-weight: 700;
+    }
+    
+    .card-subtitle {
+      color: $text-secondary;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  
+  @include responsive(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .contact-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $accent-gold;
+    flex-shrink: 0;
+  }
+  
+  .contact-details {
+    h4 {
+      font-size: 1rem;
+      color: $text-primary;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+    
+    .contact-content {
+      font-weight: 700;
+      color: $accent-gold;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-description {
+      font-size: 0.85rem;
+      color: $text-secondary;
+      line-height: 1.5;
+    }
+  }
+}
+
+// WhatsApp Button Mejorado
+.whatsapp-contact {
+  .whatsapp-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 1.25rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-icon {
+      font-size: 2rem;
+      animation: pulse 2s infinite;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    
+    .whatsapp-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      
+      .whatsapp-title {
+        font-size: 1.1rem;
+      }
+      
+      .whatsapp-subtitle {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+// Mapa con información adicional
+.contact-map-card {
+  .mapa {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    margin-bottom: 1.5rem;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      mix-blend-mode: multiply;
+      z-index: 2;
+      pointer-events: none;
+      border-radius: 10px;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(212, 175, 55, 0.1) 0%,
+        transparent 50%,
+        rgba(212, 175, 55, 0.1) 100%
+      );
+      z-index: 3;
+      pointer-events: none;
+      border-radius: 10px;
+    }
+    
+    iframe {
+      display: block;
+      border-radius: 10px;
+      width: 100%;
+      height: 400px;
+      border: none;
+      filter: grayscale(50%) contrast(120%) brightness(0.7);
+      transition: filter 0.5s ease;
+      
+      &:hover {
+        filter: grayscale(30%) contrast(130%) brightness(0.8);
+      }
+    }
+  }
+  
+  .map-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    
+    @include responsive(sm) {
+      grid-template-columns: 1fr;
+    }
+    
+    .map-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      color: $text-primary;
+      font-size: 0.9rem;
+      
+      .map-icon {
+        font-size: 1.25rem;
+        color: $accent-gold;
+      }
+    }
+  }
+}
+
+// Estado de éxito
+.contact-success {
+  text-align: center;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  padding: 4rem 2.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+  
+  .success-icon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    color: $accent-gold;
+    animation: bounce 1s, pulse 2s infinite 1s;
+    text-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+  }
+  
+  h2 {
+    color: $accent-gold;
+    margin-bottom: 1.5rem;
+    font-size: 2.25rem;
+    font-family: $font-serif;
+    font-weight: 700;
+  }
+  
+  p {
+    font-size: 1.15rem;
+    color: $text-secondary;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  
+  .btn {
+    padding: 1rem 2.5rem;
+    background: $accent-gold;
+    color: $primary-bg;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: darken($accent-gold, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+  }
+}
+
+// Animaciones
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+// Responsive
+@include responsive(md) {
+  .contact-section {
+    padding: 3rem 0;
+    
+    .container {
+      padding: 0 1.5rem;
+    }
+  }
+  
+  .contact-form-container,
+  .exclusive-services-card,
+  .contact-info-card,
+  .contact-map-card {
+    padding: 2rem;
+  }
+  
+  .exclusive-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include responsive(sm) {
+  .contact-section {
+    padding: 2rem 0;
+    
+    .container {
+      padding: 0 1rem;
+    }
+  }
+  
+  .contact-content {
+    gap: 1.5rem;
+  }
+  
+  .contact-form-container,
+  .exclusive-services-card,
+  .contact-info-card,
+  .contact-map-card {
+    padding: 1.5rem;
+  }
+  
+  .exclusive-service-item,
+  .contact-info-item {
+    padding: 1rem;
+  }
+  
+  .map-info {
+    grid-template-columns: 1fr !important;
+  }
+}

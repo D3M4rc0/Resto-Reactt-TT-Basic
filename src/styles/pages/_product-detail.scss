@@ -1,0 +1,522 @@
+.product-detail-page {
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+
+// Breadcrumb
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: $text-muted;
+  flex-wrap: wrap;
+
+  button {
+    background: none;
+    border: none;
+    color: $accent-gold;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(212, 175, 55, 0.1);
+    }
+  }
+
+  .breadcrumb-current {
+    color: $text-primary;
+    font-weight: 500;
+  }
+}
+
+// Detalle del producto
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+
+  @include responsive(lg) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @include responsive(md) {
+    gap: 2rem;
+  }
+
+  &__gallery {
+    .product-main-image {
+      img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        @include responsive(md) {
+          height: 400px;
+        }
+
+        @include responsive(sm) {
+          height: 300px;
+        }
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.product-header {
+  .product-title {
+    font-family: $font-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+
+    @include responsive(md) {
+      font-size: 2rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 1.75rem;
+    }
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-stars {
+    color: $accent-gold;
+    font-size: 1.2rem;
+  }
+
+  .product-rating-text {
+    color: $text-muted;
+    font-size: 0.9rem;
+  }
+
+  .product-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $accent-gold;
+    margin-bottom: 1.5rem;
+
+    @include responsive(sm) {
+      font-size: 2rem;
+    }
+  }
+
+  .product-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .product-meta-item {
+    display: flex;
+    gap: 0.5rem;
+    color: $text-secondary;
+
+    strong {
+      color: $text-primary;
+      min-width: 120px;
+    }
+
+    .in-stock {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .out-of-stock {
+      color: #ef4444;
+      font-weight: 600;
+    }
+  }
+}
+
+.product-description-short {
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: $text-secondary;
+  }
+}
+
+.product-actions {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 2rem 0;
+
+  @include responsive(md) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .quantity-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    label {
+      color: $text-primary;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+
+    @include responsive(md) {
+      width: 100%;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+
+      &--add-to-cart {
+        background: $accent-gold;
+        color: $primary-bg;
+
+        &:hover:not(:disabled) {
+          background: darken($accent-gold, 10%);
+        }
+      }
+
+      &--buy-now {
+        background: $accent-blue;
+        color: white;
+        border: none;
+
+        &:hover:not(:disabled) {
+          background: darken($accent-blue, 10%);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.delivery-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.delivery-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .delivery-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+  }
+
+  div {
+    flex: 1;
+
+    strong {
+      color: $text-primary;
+      font-weight: 600;
+    }
+
+    p {
+      color: $text-muted;
+      margin: 0.25rem 0 0 0;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Tabs del producto
+.product-tabs {
+  margin: 4rem 0;
+
+  .tabs-header {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: $text-muted;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: $text-primary;
+    }
+
+    &--active {
+      color: $accent-gold;
+      border-bottom-color: $accent-gold;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $accent-gold;
+      }
+    }
+
+    @include responsive(sm) {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .tabs-content {
+    min-height: 200px;
+  }
+
+  .tab-panel {
+    animation: fadeIn 0.3s ease;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      line-height: 1.7;
+      color: $text-secondary;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Reseñas
+.no-reviews {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: $text-muted;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-item {
+  background: $secondary-bg;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .review-rating {
+    color: $accent-gold;
+    font-size: 1.1rem;
+  }
+
+  .review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    strong {
+      color: $text-primary;
+      font-size: 1rem;
+    }
+
+    span {
+      color: $text-muted;
+      font-size: 0.8rem;
+    }
+  }
+
+  .review-comment {
+    color: $text-secondary;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+// Ingredientes
+.ingredients-list {
+  h4 {
+    color: $text-primary;
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.2rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  ul {
+    margin: 0 0 1.5rem 1rem;
+    padding: 0;
+    color: $text-secondary;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+.nutrition-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include responsive(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nutrition-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  color: $text-secondary;
+
+  span:first-child {
+    color: $text-primary;
+    font-weight: 500;
+  }
+}
+
+.allergens {
+  .allergen-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .allergen-tag {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+}
+
+// Productos relacionados
+.related-products {
+  margin: 4rem 0;
+
+  h2 {
+    font-family: $font-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $accent-gold;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @include responsive(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Estados de error
+.product-error {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: $text-muted;
+
+  h1 {
+    font-size: 2.5rem;
+    color: $text-primary;
+    margin-bottom: 1rem;
+
+    @include responsive(sm) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+}

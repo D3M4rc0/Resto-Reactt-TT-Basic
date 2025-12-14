@@ -1,0 +1,109 @@
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/animations';
+@import './pages/admin-dashboard';
+
+// Reset y base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-sans;
+  background-color: $primary-bg;
+  color: $text-primary;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+// Importaciones de componentes
+@import './components/header';
+@import './components/navbar';
+@import './components/footer'; // ✅ NUEVO
+@import './components/product-card';
+@import './components/cart';
+@import './components/modal';
+@import './components/scroll-to-top';
+@import './components/chatbot';
+@import './components/notification'; 
+@import 'components/contact';
+
+// Pages
+@import './pages/home';
+@import './pages/menu';
+@import './pages/about';
+@import './pages/checkout';
+@import './pages/admin-products';
+
+// Utilidades
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.btn {
+  padding: $spacing-xs $spacing-md;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: $transition;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+
+  &-primary {
+    background: linear-gradient(135deg, $accent-gold, darken($accent-gold, 10%));
+    color: $primary-bg;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow;
+    }
+  }
+
+  &-secondary {
+    background: $accent-blue;
+    color: white;
+
+    &:hover {
+      background: darken($accent-blue, 10%);
+    }
+  }
+
+  &-outline {
+    background: transparent;
+    border: 2px solid $accent-gold;
+    color: $accent-gold;
+
+    &:hover {
+      background: $accent-gold;
+      color: $primary-bg;
+    }
+  }
+}
+
+.section {
+  padding: $spacing-xl 0;
+
+  &-title {
+    font-family: $font-serif;
+    font-size: 2.5rem;
+    margin-bottom: $spacing-md;
+    color: $accent-gold;
+    text-align: center;
+  }
+
+  &-subtitle {
+    font-size: 1.2rem;
+    color: $text-secondary;
+    text-align: center;
+    margin-bottom: $spacing-lg;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

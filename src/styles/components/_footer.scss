@@ -1,0 +1,325 @@
+.footer {
+  background: $secondary-bg;
+  color: $text-primary;
+  padding: 3rem 0 1rem;
+  margin-top: auto;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    @include responsive(lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @include responsive(md) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  &__section {
+    h4 {
+      color: $accent-gold;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    &-fallback {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid $accent-gold;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    &-text {
+      h3 {
+        color: $accent-gold;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    width: fit-content;
+
+    &-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    &--open {
+      background: rgba(76, 175, 80, 0.2);
+      color: #4CAF50;
+      
+      .footer__status-dot {
+        background: #4CAF50;
+      }
+    }
+
+    &--closed {
+      background: rgba(244, 67, 54, 0.2);
+      color: #F44336;
+      
+      .footer__status-dot {
+        background: #F44336;
+      }
+    }
+  }
+
+  &__schedule {
+    &-times {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      
+      div {
+        padding: 0.25rem 0;
+        
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    a {
+      color: $text-primary;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+      
+      &:hover {
+        color: $accent-gold;
+      }
+    }
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    &-icon {
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+    }
+  }
+
+  &__social {
+    h4 {
+      margin-bottom: 0.75rem;
+    }
+
+    &-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: $accent-gold;
+        transform: translateY(-2px);
+        
+        span {
+          filter: brightness(0) invert(1);
+        }
+      }
+      
+      span {
+        font-size: 1.2rem;
+        transition: filter 0.3s ease;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+
+    @include responsive(md) {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  &__copyright {
+    color: $text-muted;
+  }
+
+  &__legal {
+    display: flex;
+    gap: 1.5rem;
+    
+    a {
+      color: $text-muted;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $accent-gold;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Añade al final del _footer.scss
+.footer__price-notice {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  
+  p {
+    margin: 0 0 0.25rem 0;
+    font-weight: 500;
+    color: $accent-gold;
+  }
+  
+  small {
+    color: $text-muted;
+    font-size: 0.8rem;
+  }
+}
+
+.footer__legal-link {
+  background: none;
+  border: none;
+  color: $text-muted;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: $accent-gold;
+  }
+}
+
+// Estilos para modales de términos
+.modal-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.modal-section {
+  margin-bottom: 1.5rem;
+  
+  h3 {
+    color: $accent-gold;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  ul {
+    padding-left: 1.5rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+  }
+}
+
+.modal-notice,
+.price-notice {
+  background: rgba(212, 175, 55, 0.1);
+  border-left: 4px solid $accent-gold;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  
+  p {
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+.modal-contact {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+  
+  p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+}

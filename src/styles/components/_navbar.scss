@@ -1,0 +1,328 @@
+// Navbar secundaria - POSICIÓN STICKY
+.navbar-secondary {
+  position: sticky;
+  top: 80px; // Se pega debajo del header (80px de altura)
+  z-index: 999;
+  background: rgba(45, 45, 45, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 0;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @include responsive(lg) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  &__categories {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .categories-scroll-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .categories-scroll {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.25rem 0;
+    flex: 1;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // ✅ BOTONES DE NAVEGACIÓN AGREGADOS
+  .scroll-indicator {
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin: 0 0.25rem;
+
+    &:hover:not(.scroll-indicator--disabled) {
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
+    }
+
+    &--disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &--left {
+      margin-right: 0.5rem;
+    }
+
+    &--right {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__category-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: $text-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      background: $accent-gold;
+      color: $primary-bg;
+      border-color: $accent-gold;
+      transform: translateY(-1px);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+    }
+  }
+
+  .scroll-indicators {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    justify-content: space-between;
+    pointer-events: none;
+
+    @include responsive(lg) {
+      display: flex;
+    }
+  }
+
+  &__search-container {
+    position: relative;
+    min-width: 300px;
+
+    @include responsive(md) {
+      min-width: 250px;
+    }
+
+    @include responsive(sm) {
+      min-width: 200px;
+    }
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: $text-primary;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: $text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      border-color: $accent-gold;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
+  }
+
+  &__search-btn {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $accent-gold;
+      background: rgba(212, 175, 55, 0.1);
+    }
+  }
+
+  .search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: $secondary-bg;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+
+  .suggestions-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: $text-muted;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .suggestions-list {
+    padding: 0.5rem 0;
+  }
+
+  .suggestion-item {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    color: $text-primary;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .suggestion-icon {
+    color: $accent-gold;
+  }
+
+  &__active-filters {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .filters-label {
+    color: $text-muted;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .active-filter {
+    background: rgba(212, 175, 55, 0.2);
+    color: $accent-gold;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-remove {
+    background: none;
+    border: none;
+    color: $accent-gold;
+    cursor: pointer;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgba(212, 175, 55, 0.3);
+    }
+  }
+
+  .clear-all-filters {
+    background: none;
+    border: none;
+    color: $text-muted;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: $accent-orange;
+    }
+  }
+
+  // Quick actions
+  &__quick-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: 16px;
+
+    @include responsive(md) {
+      display: none;
+    }
+  }
+
+  .quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+  }
+
+  .action-icon {
+    font-size: 14px;
+  }
+
+  .action-text {
+    white-space: nowrap;
+  }
+}
+
+// Ajuste para el contenido principal
+.main-content {
+  padding-top: 140px; // Header (80px) + Navbar (60px aprox)
+}
