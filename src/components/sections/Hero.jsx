@@ -12,7 +12,7 @@ const Hero = () => {
           playsInline
           poster="/src/assets/images/placeholder-2.webp"
         >
-          <source src="src\assets\videos\banner-video.mp4" type="video/webm" />
+          <source src="src\assets\videos\banner-video.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento video.
         </video>
         <div className="hero__overlay"></div>
