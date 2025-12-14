@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCategories } from '../../hooks/useProducts';
-import { useSearchData } from '../../hooks/useSearchData'; // ✅ NUEVO HOOK
+import { useSearchData } from '../../hooks/useSearchData'; 
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [suggestions, setSuggestions] = useState([]); // ✅ NUEVO ESTADO
+  const [suggestions, setSuggestions] = useState([]); 
   const [currentScroll, setCurrentScroll] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,9 +15,9 @@ const Navbar = () => {
   const searchInputRef = useRef(null);
 
   const { categories: apiCategories } = useCategories();
-  const { searchIndex, loading } = useSearchData(); // ✅ USAR HOOK DE BÚSQUEDA
+  const { searchIndex, loading } = useSearchData(); 
 
-  // ✅ BÚSQUEDA EN TIEMPO REAL
+
   useEffect(() => {
     if (searchTerm.trim() === '' || loading) {
       setSuggestions([]);
@@ -32,7 +32,7 @@ const Navbar = () => {
     setSuggestions(results);
   }, [searchTerm, searchIndex, loading]);
 
-  // ✅ BÚSQUEDA INTELIGENTE
+
   const performSmartSearch = (term) => {
     const lowerTerm = term.toLowerCase();
     
@@ -61,7 +61,7 @@ const Navbar = () => {
     setIsSearchFocused(false);
   };
 
-  // ✅ MANEJAR BÚSQUEDA
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -69,21 +69,21 @@ const Navbar = () => {
     }
   };
 
-  // ✅ MANEJAR TECLA ENTER
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSearch(e);
     }
   };
 
-  // ✅ SELECCIONAR SUGERENCIA
+
   const handleSuggestionClick = (suggestion) => {
     navigate(suggestion.action);
     setSearchTerm('');
     setIsSearchFocused(false);
   };
 
-  // ✅ FILTRAR SOLO CATEGORÍAS DE COMIDA/BEBIDAS
+
   useEffect(() => {
     if (apiCategories.length > 0) {
       const restaurantCategories = apiCategories.filter(cat => {
@@ -130,7 +130,7 @@ const Navbar = () => {
     }
   }, [apiCategories]);
 
-  // ✅ BOTONES DE NAVEGACIÓN PARA CATEGORÍAS
+
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
@@ -143,7 +143,6 @@ const Navbar = () => {
     }
   };
 
-  // ✅ VERIFICAR SI HAY SCROLL DISPONIBLE
   const canScrollLeft = currentScroll > 0;
   const canScrollRight = scrollContainerRef.current && 
     currentScroll < (scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth);
@@ -168,7 +167,7 @@ const Navbar = () => {
     <nav className="navbar-secondary">
       <div className="container">
         <div className="navbar-secondary__content">
-          {/* ✅ CATEGORÍAS CON BOTONES DE NAVEGACIÓN */}
+
           <div className="navbar-secondary__categories">
             <div className="categories-scroll-container">
               {/* Botón izquierdo */}
@@ -214,7 +213,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* ✅ BUSCADOR MEJORADO CON SUGERENCIAS INTELIGENTES */}
+
           <div className="navbar-secondary__search-container">
             <form className="navbar-secondary__search" onSubmit={handleSearch}>
               <div className="search-input-wrapper">
@@ -238,7 +237,7 @@ const Navbar = () => {
                 </button>
               </div>
 
-              {/* ✅ SUGERENCIAS INTELIGENTES EN TIEMPO REAL */}
+
               {isSearchFocused && suggestions.length > 0 && (
                 <div className="search-suggestions">
                   <div className="suggestions-list">
@@ -264,7 +263,7 @@ const Navbar = () => {
                 </div>
               )}
 
-              {/* ✅ SUGERENCIAS POPULARES (cuando no hay texto) */}
+
               {isSearchFocused && searchTerm === '' && !loading && (
                 <div className="search-suggestions">
                   <div className="suggestions-header">
@@ -306,7 +305,7 @@ const Navbar = () => {
             </form>
           </div>
 
-          {/* Acciones Rápidas */}
+
           <div className="navbar-secondary__quick-actions">
             <button 
               className="quick-action-btn"
@@ -327,7 +326,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Estado actual de filtros */}
+
         {(location.search.includes('category=') || location.search.includes('search=')) && (
           <div className="navbar-secondary__active-filters">
             <span className="filters-label">Filtros activos:</span>

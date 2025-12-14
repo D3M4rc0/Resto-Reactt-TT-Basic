@@ -46,7 +46,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer__content">
           
-          {/* Sección Logo y Horarios */}
+
           <div className="footer__section">
             <div className="footer__logo">
               <div className="footer__logo-fallback">
@@ -71,14 +71,14 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Aviso de Precios */}
+
 			<div className="footer__price-notice">
 			  <p>💰 Precios en <strong>pesos argentinos (ARS)</strong></p>
 			  <small>Consultar precio en Pesos Dólares al momento del pedido</small>
 			</div>
           </div>
 
-          {/* Enlaces Rápidos */}
+
           <div className="footer__section">
             <h4>Navegación</h4>
             <ul className="footer__links">
@@ -90,7 +90,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Categorías */}
+
           <div className="footer__section">
             <h4>Categorías</h4>
             <ul className="footer__links">
@@ -102,7 +102,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contacto y Redes */}
+
           <div className="footer__section">
             <h4>Contacto</h4>
             <div className="footer__contact">
@@ -140,7 +140,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Línea inferior */}
+
         <div className="footer__bottom">
           <div className="footer__copyright">
             Le Marc Gourmet © 2025. Todos los derechos reservados. Desarrollado por DeMarco.
@@ -162,7 +162,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Modales */}
+
       <PrivacyModal 
         isOpen={showPrivacyModal}
         onClose={() => setShowPrivacyModal(false)}

@@ -97,7 +97,7 @@ const Header = () => {
                 </div>
               </Link>
 
-              {/* Navegación Principal - CORREGIDO */}
+
               <nav className="header__nav">
                 <Link 
                   to="/" 
@@ -123,8 +123,7 @@ const Header = () => {
                 >
                   Reservas
                 </Link>
-                
-                {/* Enlace Dashboard para Admin - ESTILOS CORREGIDOS */}
+
                 {user && user.rol === 'admin' && (
                   <Link
                     to="/admin/dashboard"
