@@ -179,10 +179,39 @@
   }
 
   &__feature-icon {
-    font-size: 1.5rem;
+    background: rgba(212, 175, 55, 0.15); // ✅ Fondo circular dorado
+    color: $accent-gold;
+    fill: $accent-gold;
+    width: 40px;
+    height: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1.2rem; // ✅ Tamaño del ícono dentro del círculo
+    
+    // Para íconos de lucide-react
+    stroke-width: 1.5;
+  }
+  
+  // Efecto hover en toda la feature
+  &__feature:hover {
+    .hero__feature-icon {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: $accent-gold;
+      transform: rotate(5deg) scale(1.05);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+    
+    span {
+      color: $accent-gold;
+      transform: translateX(3px);
+    }
   }
 }
-
 
 .hero__divider {
   width: 100%; 
@@ -195,7 +224,6 @@
     width: 80px;
   }
 }
-
 
 
 // Secciones comunes - MODIFICADO PARA 90% DE ANCHO
