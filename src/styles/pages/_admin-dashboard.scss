@@ -97,6 +97,8 @@
   background: var(--bg-primary);
   color: var(--text-primary);
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .admin-sidebar {
@@ -348,6 +350,7 @@
   }
 }
 
+// ========== CAMBIO CRÍTICO: CONTENIDO PRINCIPAL ==========
 .admin-main-content {
   flex: 1;
   margin-left: var(--sidebar-width);
@@ -355,6 +358,9 @@
   display: flex;
   flex-direction: column;
   background: var(--bg-primary);
+  width: calc(100vw - var(--sidebar-width));
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 // ========== HEADER ==========
@@ -362,24 +368,26 @@
   height: var(--header-height);
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
+  box-sizing: border-box;
   
   .header-left {
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--text-primary);
       margin: 0;
     }
     
     .header-subtitle {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       color: var(--text-secondary);
       margin: 0.25rem 0 0;
     }
@@ -442,7 +450,7 @@
 .admin-tabs {
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   gap: 0.5rem;
   
@@ -471,9 +479,11 @@
 // ========== CONTENIDO PRINCIPAL ==========
 .admin-content {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem;
   overflow-y: auto;
   background: var(--bg-primary);
+  width: 100%;
+  box-sizing: border-box;
   
   .error-alert {
     background: var(--color-red-light);
@@ -1011,7 +1021,7 @@
   height: var(--footer-height);
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1048,13 +1058,40 @@
 }
 
 // ========== RESPONSIVE ==========
-@media (max-width: 1024px) {
-  :root {
-    --sidebar-width: 240px;
+@media (max-width: 1400px) {
+  .admin-header {
+    padding: 0 1rem;
+  }
+  
+  .admin-tabs,
+  .admin-content {
+    padding: 1rem;
   }
   
   .stats-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --sidebar-width: 240px;
+  }
+  
+  .admin-main-content {
+    margin-left: 240px;
+    width: calc(100vw - 240px);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 220px;
+  }
+  
+  .admin-main-content {
+    margin-left: 220px;
+    width: calc(100vw - 220px);
   }
 }
 
@@ -1070,21 +1107,22 @@
   
   .admin-main-content {
     margin-left: 0;
+    width: 100vw;
   }
   
   .admin-header {
-    padding: 0 1rem;
+    padding: 0 0.75rem;
     
     .header-left {
       h1 {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
       }
     }
   }
   
   .admin-tabs,
   .admin-content {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   
   .stats-grid {
