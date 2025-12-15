@@ -107,10 +107,9 @@ const Menu = () => {
 
   return (
     <div className="menu-page">
-      {/* ✅ BANNER CORREGIDO - FUERA DEL CONTAINER */}
+      {/* ✅ BANNER COMPLETO CON IMAGEN DE FONDO */}
       <div className="menu-page__banner">
         <div className="menu-page__banner-overlay"></div>
-        {/* ✅ QUITAMOS EL container de aquí para ancho completo */}
         <div className="menu-page__header">
           <h1 className="menu-page__title">Nuestro Menú Completo</h1>
           <p className="menu-page__subtitle">

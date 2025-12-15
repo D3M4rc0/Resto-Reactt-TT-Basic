@@ -65,6 +65,7 @@ const ReviewsSection = () => {
             Descubre las experiencias de quienes ya han disfrutado de nuestra cocina
           </p>
         </div>
+		<div className="section-divider"></div>
 
         {loading ? (
           <Loading message="Cargando reseñas..." />

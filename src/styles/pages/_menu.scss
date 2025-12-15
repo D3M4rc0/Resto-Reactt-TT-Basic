@@ -1,40 +1,101 @@
 .menu-page {
-  padding: 2rem 0;
+  padding: 0;
   min-height: 100vh;
 
-  &__header {
-    text-align: center;
+  &__banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-image: url('/src/assets/images/restaurant-menu-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin-bottom: 3rem;
-    padding: 2rem 0;
+	margin-top: -50px;
+
+    @include responsive(md) {
+      height: 300px;
+	  margin-top: -15px;
+    }
+
+    @include responsive(sm) {
+      height: 250px;
+	  margin-top: -10px;
+    }
+  }
+
+  &__banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+	background: rgba(0, 0, 0, 0.7);
+  }
+
+  &__header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   &__title {
     font-family: $font-serif;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color: $accent-gold;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
     @include responsive(md) {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
 
     @include responsive(sm) {
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
   }
 
   &__subtitle {
-    font-size: 1.2rem;
-    color: $text-secondary;
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 90%;
+    margin: 0 auto 1.5rem;
     line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 
     @include responsive(md) {
+      font-size: 1.2rem;
+    }
+
+    @include responsive(sm) {
       font-size: 1.1rem;
+      padding: 0 1rem;
     }
   }
+
+  &__title-line {
+    width: 90%;
+    height: 3px;
+    background: $accent-gold;
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  /* ✅ FIN DE NUEVOS ESTILOS - CONTINÚA EL CÓDIGO ORIGINAL */
 
   &__filters {
     display: flex;
@@ -193,7 +254,7 @@
     .product-card {
       border: 2px solid $accent-gold;
       transform: scale(1.02);
-      
+
       &:hover {
         transform: scale(1.05) translateY(-5px);
       }

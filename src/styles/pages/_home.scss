@@ -1,4 +1,5 @@
 .home-page {
+  padding-top: 0;
   min-height: 100vh;
 }
 
@@ -6,10 +7,12 @@
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 600px;
+  min-height: 60vh;
   display: flex;
   align-items: center;
+  justify-content: center; // Centrar horizontalmente
   overflow: hidden;
+  margin-top: -50px;
 
   &__video-container {
     position: absolute;
@@ -43,50 +46,64 @@
   &__content {
     position: relative;
     z-index: 2;
-    width: 100%;
+    width: 90%; 
+    max-width: 1400px; 
+    text-align: center; 
   }
 
   &__text {
-    max-width: 600px;
+    max-width: 100%; 
+    margin: 0 auto; 
   }
 
   &__title {
     font-family: $font-serif;
-    font-size: 3.5rem;
+    font-size: 2.5rem; 
     font-weight: 700;
     color: $text-primary;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    
     @include responsive(lg) {
-      font-size: 3rem;
+      font-size: 2.2rem;
     }
-
+    
     @include responsive(md) {
-      font-size: 2.5rem;
+      font-size: 1.9rem;
     }
-
+    
     @include responsive(sm) {
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
   }
 
   &__title-accent {
     color: $accent-gold;
-    display: block;
+    display: inline; 
+  }
+
+  // Línea decorativa debajo del título
+  &__title-divider {
+    width: 120px;
+    height: 3px;
+    background: $accent-gold;
+    margin: 1.5rem auto;
+    border-radius: 2px;
   }
 
   &__description {
     font-size: 1.2rem;
     color: $text-secondary;
-    line-height: 1.6;
+    line-height: 1.8;
     margin-bottom: 2.5rem;
-    max-width: 500px;
-
+    max-width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
+    
     @include responsive(md) {
       font-size: 1.1rem;
     }
-
+    
     @include responsive(sm) {
       font-size: 1rem;
     }
@@ -97,10 +114,11 @@
     gap: 1rem;
     margin-bottom: 3rem;
     flex-wrap: wrap;
-
+    justify-content: center; 
+    
     @include responsive(sm) {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
     }
   }
 
@@ -112,7 +130,7 @@
     &--primary {
       background: $accent-gold;
       color: $primary-bg;
-
+      
       &:hover {
         background: darken($accent-gold, 10%);
         transform: translateY(-2px);
@@ -122,15 +140,16 @@
     &--secondary {
       border-color: $accent-gold;
       color: $accent-gold;
-
+      
       &:hover {
         background: $accent-gold;
         color: $primary-bg;
       }
     }
-
+    
     @include responsive(sm) {
       width: 100%;
+      max-width: 300px;
       text-align: center;
     }
   }
@@ -139,7 +158,8 @@
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
-
+    justify-content: center; 
+    
     @include responsive(sm) {
       gap: 1rem;
     }
@@ -151,7 +171,7 @@
     gap: 0.75rem;
     color: $text-primary;
     font-weight: 500;
-
+    
     @include responsive(xs) {
       flex: 1;
       min-width: 140px;
@@ -163,195 +183,66 @@
   }
 }
 
-// Secciones comunes
-.specialties-section,
-.offers-section,
-.menu-section,
-.home-page {
-  min-height: 100vh;
-}
 
-// Hero Section
-.hero {
-  position: relative;
-  height: 100vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-
-  &__video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
-
-  &__video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      45deg,
-      rgba(26, 26, 26, 0.9) 0%,
-      rgba(26, 26, 26, 0.7) 50%,
-      rgba(26, 26, 26, 0.9) 100%
-    );
-  }
-
-  &__content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-  }
-
-  &__text {
-    max-width: 600px;
-  }
-
-  &__title {
-    font-family: $font-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: $text-primary;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-
-    @include responsive(lg) {
-      font-size: 3rem;
-    }
-
-    @include responsive(md) {
-      font-size: 2.5rem;
-    }
-
-    @include responsive(sm) {
-      font-size: 2rem;
-    }
-  }
-
-  &__title-accent {
-    color: $accent-gold;
-    display: block;
-  }
-
-  &__description {
-    font-size: 1.2rem;
-    color: $text-secondary;
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
-    max-width: 500px;
-
-    @include responsive(md) {
-      font-size: 1.1rem;
-    }
-
-    @include responsive(sm) {
-      font-size: 1rem;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-
-    @include responsive(sm) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  &__btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-
-    &--primary {
-      background: $accent-gold;
-      color: $primary-bg;
-
-      &:hover {
-        background: darken($accent-gold, 10%);
-        transform: translateY(-2px);
-      }
-    }
-
-    &--secondary {
-      border-color: $accent-gold;
-      color: $accent-gold;
-
-      &:hover {
-        background: $accent-gold;
-        color: $primary-bg;
-      }
-    }
-
-    @include responsive(sm) {
-      width: 100%;
-      text-align: center;
-    }
-  }
-
-  &__features {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-
-    @include responsive(sm) {
-      gap: 1rem;
-    }
-  }
-
-  &__feature {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: $text-primary;
-    font-weight: 500;
-
-    @include responsive(xs) {
-      flex: 1;
-      min-width: 140px;
-    }
-  }
-
-  &__feature-icon {
-    font-size: 1.5rem;
+.hero__divider {
+  width: 100%; 
+  height: 3px;
+  background: $accent-gold;
+  margin: 2rem auto 0; 
+  border-radius: 2px;
+  
+  @include responsive(sm) {
+    width: 80px;
   }
 }
 
-// Secciones comunes
+
+
+// Secciones comunes - MODIFICADO PARA 90% DE ANCHO
 .specialties-section,
 .offers-section,
 .menu-section,
 .reviews-section,
 .contact-section {
   padding: 5rem 0;
+  width: 100%;
+
+
+  .container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+
+  .specialties-header,
+  .offers-header,
+  .menu-section-header,
+  .reviews-header,
+  .contact-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
   @include responsive(md) {
     padding: 3rem 0;
   }
 }
 
+// Títulos de sección - MODIFICADO PARA 90% DE ANCHO
 .section-title {
   font-family: $font-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: $accent-gold;
+  color: $text-primary; 
   text-align: center;
   margin-bottom: 1rem;
+  width: 100%; 
+  max-width: 1200px; 
+  margin-left: auto; 
+  margin-right: auto; 
 
   @include responsive(md) {
     font-size: 2rem;
@@ -362,25 +253,44 @@
   }
 }
 
+// Subtítulos de sección - MODIFICADO PARA 90% DE ANCHO
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem; 
   color: $text-secondary;
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto 3rem;
+  max-width: 1000px;
+  margin: 0 auto 1.5rem; 
   line-height: 1.6;
+  width: 100%; 
 
   @include responsive(md) {
+    font-size: 1.1rem;
+  }
+
+  @include responsive(sm) {
     font-size: 1rem;
-    margin-bottom: 2rem;
   }
 }
 
-// Carousels - MANTIENE ESPECIALIDADES Y OFERTAS
+// Divisor de sección - MODIFICADO PARA 90% DE ANCHO
+.section-divider {
+  width: 90%; 
+  height: 3px;
+  background: $accent-gold;
+  margin: 1.5rem auto;
+  border-radius: 2px;
+  
+  @include responsive(sm) {
+    width: 80%;
+  }
+}
+
+// Carousels - AJUSTADO PARA EL NUEVO ANCHO
 .specialties-carousel,
 .offers-carousel {
   position: relative;
   margin: 2rem 0;
+  width: 100%;
 
   .carousel-btn {
     position: absolute;
@@ -434,6 +344,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  width: 100%;
 
   @include responsive(lg) {
     grid-template-columns: repeat(2, 1fr);
@@ -449,6 +360,7 @@
   justify-content: center;
   gap: 0.5rem;
   margin: 2rem 0;
+  width: 100%;
 }
 
 .carousel-indicator {
@@ -475,26 +387,21 @@
   color: $text-muted;
   font-size: 0.9rem;
   margin-bottom: 2rem;
-}
-
-// Sección de Especialidades
-.specialties-header,
-.offers-header,
-.menu-section-header,
-.contact-header {
-  text-align: center;
-  margin-bottom: 3rem;
+  width: 100%;
 }
 
 // Sección de Ofertas
 .offers-title-container,
 .menu-title-container {
-  display: flex;
+  display: inline-flex; 
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.4rem; 
   margin-bottom: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: auto; 
+  margin-left: auto;
+  margin-right: auto; 
 }
 
 .offers-badge,
@@ -505,6 +412,7 @@
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .offer-card {
@@ -513,6 +421,7 @@
   border-radius: 12px;
   overflow: hidden;
   @include hover-lift;
+  width: 100%;
 
   .offer-badge {
     position: absolute;
@@ -532,6 +441,7 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0 1.25rem 1rem;
+    width: 100%;
   }
 
   .offer-original-price {
@@ -553,6 +463,7 @@
     padding: 0 1.25rem 1.25rem;
     color: $text-muted;
     font-size: 0.8rem;
+    width: 100%;
 
     .timer-icon {
       color: $accent-orange;
@@ -567,12 +478,14 @@
   margin-top: 3rem;
   color: $primary-bg;
   text-align: center;
+  width: 100%;
 
   .offers-banner-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+    width: 100%;
 
     @include responsive(md) {
       flex-direction: column;
@@ -582,6 +495,7 @@
 
   .banner-text {
     flex: 1;
+    width: 100%;
 
     h3 {
       margin: 0 0 0.5rem 0;
@@ -613,6 +527,7 @@
   text-align: center;
   padding: 3rem 2rem;
   color: $text-muted;
+  width: 100%;
 
   &-icon {
     font-size: 4rem;
@@ -624,13 +539,15 @@
     margin-bottom: 0.5rem;
   }
 }
+
 // ==========================================
-// SECCIÓN DE REVIEWS - NUEVO DISEÑO
+// SECCIÓN DE REVIEWS - MODIFICADO PARA 90% DE ANCHO
 // ==========================================
 
 .reviews-header {
   text-align: center;
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 .reviews-title-container {
@@ -640,6 +557,7 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .reviews-rating-summary {
@@ -648,6 +566,7 @@
   justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  width: 100%;
   
   .average-rating {
     font-size: 3rem;
@@ -751,7 +670,7 @@
   }
 }
 
-// Tarjetas de review - COLOR DIFERENTE Y MEJOR DISEÑO
+// Tarjetas de review
 .review-card {
   background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
   border-radius: 16px;
@@ -761,6 +680,7 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
 
   // Efecto de brillo
   &::before {
@@ -797,6 +717,7 @@
     margin-bottom: 1.25rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
   }
 
   .reviewer-info {
@@ -857,6 +778,7 @@
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1.25rem;
+    width: 100%;
   }
 
   .review-rating {
@@ -875,6 +797,7 @@
   // Comentario
   .review-comment-container {
     margin-bottom: 0;
+    width: 100%;
   }
 
   .review-comment {
@@ -906,6 +829,7 @@
   padding: 2.5rem;
   margin: 3rem 0;
   border: 1px solid rgba(212, 175, 55, 0.2);
+  width: 100%;
 
   .breakdown-title {
     font-family: $font-serif;
@@ -922,12 +846,14 @@
   gap: 1rem;
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .rating-bar-row {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .rating-stars-small {
@@ -945,6 +871,7 @@
   height: 12px;
   overflow: hidden;
   position: relative;
+  width: 100%;
 
   .bar-fill {
     height: 100%;
@@ -963,13 +890,14 @@
   text-align: right;
 }
 
-// Indicadores del carrusel (sobreescribe los generales)
+// Indicadores del carrusel
 .reviews-carousel {
   .carousel-indicators {
     display: flex;
     justify-content: center;
     gap: 0.6rem;
     margin: 2.5rem 0 2rem;
+    width: 100%;
   }
 
   .carousel-indicator {
@@ -999,6 +927,7 @@
   text-align: center;
   padding: 4rem 2rem;
   color: $text-muted;
+  width: 100%;
 
   &-icon {
     font-size: 5rem;
@@ -1029,12 +958,14 @@
   border-radius: 16px;
   padding: 2.5rem;
   margin-top: 3rem;
+  width: 100%;
 
   .cta-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+    width: 100%;
 
     @include responsive(md) {
       flex-direction: column;
@@ -1044,6 +975,7 @@
 
   .cta-text {
     flex: 1;
+    width: 100%;
 
     h3 {
       color: $text-primary;
@@ -1094,8 +1026,3 @@
   animation: slideInUp 0.6s ease-out forwards;
   opacity: 0;
 }
-
-
-
-
-

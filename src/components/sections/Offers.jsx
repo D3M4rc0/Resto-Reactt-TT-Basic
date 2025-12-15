@@ -88,10 +88,12 @@ const Offers = () => {
               🔥 Por Tiempo Limitado
             </div>
           </div>
+		  
           <p className="section-subtitle">
             Aprovecha nuestros descuentos exclusivos en platos seleccionados
           </p>
         </div>
+		<div className="section-divider"></div>
 
         {loading ? (
           <Loading message="Cargando ofertas..." />

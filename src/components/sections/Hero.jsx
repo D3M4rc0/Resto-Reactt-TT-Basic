@@ -1,4 +1,5 @@
 import React from 'react'
+import { Star, ChefHat, Truck } from 'lucide-react'
 import bannerVideo from '/src/assets/videos/banner-video.mp4'
 import posterImg from '/src/assets/images/restaurant-menu-1.jpg'
 
@@ -19,7 +20,6 @@ const Hero = () => {
         </video>
         <div className="hero__overlay"></div>
       </div>
-
       <div className="hero__content">
         <div className="container">
           <div className="hero__text">
@@ -27,6 +27,7 @@ const Hero = () => {
               Experiencia Gastronómica
               <span className="hero__title-accent"> Excepcional</span>
             </h1>
+            
             <p className="hero__description">
               Descubre los sabores más exquisitos en un ambiente de lujo y elegancia. 
               Donde cada plato es una obra de arte y cada momento una experiencia única.
@@ -40,21 +41,23 @@ const Hero = () => {
                 Reservar Mesa
               </button>
             </div>
-
+            
             <div className="hero__features">
               <div className="hero__feature">
-                <span className="hero__feature-icon">⭐</span>
+                <Star className="hero__feature-icon" />
                 <span>Calidad Premium</span>
               </div>
               <div className="hero__feature">
-                <span className="hero__feature-icon">👨‍🍳</span>
+                <ChefHat className="hero__feature-icon" />
                 <span>Chefs Expertos</span>
               </div>
               <div className="hero__feature">
-                <span className="hero__feature-icon">🚚</span>
+                <Truck className="hero__feature-icon" />
                 <span>Delivery Rápido</span>
               </div>
             </div>
+            
+            <div className="hero__divider"></div>
           </div>
         </div>
       </div>

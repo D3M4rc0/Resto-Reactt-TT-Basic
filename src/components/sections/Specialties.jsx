@@ -45,11 +45,13 @@ const Specialties = () => {
   return (
     <section className="specialties-section">
       <div className="container">
+        {/* ✅ CABECERA CON TU PATRÓN EXACTO */}
         <div className="specialties-header">
           <h2 className="section-title">Especialidades del Chef</h2>
           <p className="section-subtitle">
             Descubre nuestras creaciones exclusivas preparadas con pasión y maestría culinaria
           </p>
+          <div className="section-divider"></div>
         </div>
 
         {loading ? (

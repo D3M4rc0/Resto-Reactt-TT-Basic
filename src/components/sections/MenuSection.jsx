@@ -46,6 +46,8 @@ const MenuSection = () => {
             hasta creaciones innovadoras del chef
           </p>
         </div>
+		<div className="section-divider"></div>
+		
 
         {loading ? (
           <Loading message="Cargando menú..." />

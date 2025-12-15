@@ -68,7 +68,7 @@ const Contact = () => {
       // Simular envío del formulario
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      // Aquí integrarías con Formspree o tu backend
+      // Aquí integraría con Formspree o tu backend
       console.log('Formulario enviado:', formData)
       
       setIsSubmitted(true)
@@ -172,11 +172,13 @@ const Contact = () => {
             Estamos aquí para ayudarte.
           </p>
         </div>
+		<div className="section-divider"></div>
+		
 
         <div className="contact-content">
-          {/* Columna Izquierda: Formulario y Servicios Exclusivos */}
+
           <div className="contact-left-column">
-            {/* Tarjeta de Consulta y Reservas Exclusivas */}
+
             <div className="exclusive-services-card">
               <div className="exclusive-header">
                 <div className="exclusive-icon">✨</div>
@@ -214,7 +216,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Formulario de Contacto */}
+
             <div className="contact-form-container">
               <div className="form-header">
                 <h3>Envíanos tu Consulta</h3>
@@ -326,7 +328,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Columna Derecha: Información y Mapa */}
+
           <div className="contact-right-column">
             <div className="contact-info-card">
               <div className="card-header">
@@ -347,7 +349,7 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* WhatsApp Button */}
+
               <div className="whatsapp-contact">
                 <a 
                   href="https://wa.me/5491112345678" 
@@ -364,7 +366,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Mapa */}
             <div className="contact-map-card">
               <div className="card-header">
                 <h4>Nuestra Ubicación</h4>
