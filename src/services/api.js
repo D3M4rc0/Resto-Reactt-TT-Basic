@@ -1,14 +1,21 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+// ✅ URL siempre con HTTPS (Railway siempre usa HTTPS)
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
+  'https://api-resto-datasuitepro-production.up.railway.app/api/v1'
+
 const TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 10000
+
+console.log('🔧 API Base URL:', API_BASE_URL)
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
   },
   timeout: TIMEOUT,
+  withCredentials: false, // Importante para CORS
 })
 
 ///// Interceptor para agregar token de autenticación
@@ -19,9 +26,13 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`
     }
     console.log(`🔄 API Call: ${config.method?.toUpperCase()} ${config.url}`)
+    console.log(`🔧 Full URL: ${config.baseURL}${config.url}`)
     return config
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    console.error('❌ Request Error:', error)
+    return Promise.reject(error)
+  }
 )
 
 ///// Interceptor para manejar errores
@@ -31,7 +42,13 @@ api.interceptors.response.use(
     return response
   },
   (error) => {
-    console.error(`❌ API Error: ${error.response?.status} ${error.config?.url}`, error.response?.data)
+    console.error('❌ API Error Details:', {
+      status: error.response?.status,
+      url: error.config?.url,
+      message: error.message,
+      code: error.code,
+      data: error.response?.data
+    })
     
     ///// Si el token expiró, limpiar localStorage
     if (error.response?.status === 401) {
