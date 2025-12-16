@@ -10,34 +10,59 @@ export const useSearchData = () => {
     const fetchSearchData = async () => {
       try {
         setLoading(true)
-        
-        // ✅ OBTENER 27 PRODUCTOS COMPLETOS
+
+        // ===============================
+        // 🔹 OBTENER PRODUCTOS
+        // ===============================
         const productsResponse = await productService.getAllProducts()
-        let productsData = productsResponse.data?.data || productsResponse.data || []
+        const rawProducts = productsResponse?.data
 
-        // 🔒 BLINDAJE REAL (SIN BORRAR NADA)
+        const productsData = Array.isArray(rawProducts)
+          ? rawProducts
+          : Array.isArray(rawProducts?.data)
+            ? rawProducts.data
+            : Array.isArray(rawProducts?.data?.data)
+              ? rawProducts.data.data
+              : []
+
         if (!Array.isArray(productsData)) {
-          productsData = productsData.data || []
+          console.error('❌ productsData NO es array:', productsData)
         }
 
-        // ✅ OBTENER CATEGORÍAS
+        // ===============================
+        // 🔹 OBTENER CATEGORÍAS
+        // ===============================
         const categoriesResponse = await categoryService.getCategories()
-        let categoriesData = categoriesResponse.data?.data || categoriesResponse.data || []
+        const rawCategories = categoriesResponse?.data
 
-        // 🔒 BLINDAJE REAL (SIN BORRAR NADA)
+        const categoriesData = Array.isArray(rawCategories)
+          ? rawCategories
+          : Array.isArray(rawCategories?.data)
+            ? rawCategories.data
+            : Array.isArray(rawCategories?.data?.data)
+              ? rawCategories.data.data
+              : []
+
         if (!Array.isArray(categoriesData)) {
-          categoriesData = categoriesData.data || []
+          console.error('❌ categoriesData NO es array:', categoriesData)
         }
 
-        // ✅ CREAR ÍNDICE DE BÚSQUEDA
+        // ===============================
+        // 🔹 CREAR ÍNDICE DE BÚSQUEDA
+        // ===============================
         const index = []
 
-        // Agregar productos
-        const formattedProducts = productsData
-          .map(formatProductData)
-          .filter(Boolean)
+        // -------------------------------
+        // ➕ PRODUCTOS
+        // -------------------------------
+        const formattedProducts = Array.isArray(productsData)
+          ? productsData
+              .map(formatProductData)
+              .filter(Boolean)
+          : []
 
         formattedProducts.forEach(product => {
+          if (!product?.nombre) return
           index.push({
             type: 'product',
             name: product.nombre,
@@ -46,17 +71,24 @@ export const useSearchData = () => {
           })
         })
 
-        // Agregar categorías
-        categoriesData.forEach(category => {
-          index.push({
-            type: 'category',
-            name: category.nombre,
-            id: category.id,
-            action: `/menu?category=${encodeURIComponent(category.nombre)}`
+        // -------------------------------
+        // ➕ CATEGORÍAS
+        // -------------------------------
+        if (Array.isArray(categoriesData)) {
+          categoriesData.forEach(category => {
+            if (!category?.nombre) return
+            index.push({
+              type: 'category',
+              name: category.nombre,
+              id: category.id,
+              action: `/menu?category=${encodeURIComponent(category.nombre)}`
+            })
           })
-        })
+        }
 
-        // ✅ AGREGAR SECCIONES DEL SITIO
+        // -------------------------------
+        // ➕ SECCIONES DEL SITIO
+        // -------------------------------
         const siteSections = [
           { type: 'section', name: 'Contacto', action: '/#contacto' },
           { type: 'section', name: 'Ofertas', action: '/#ofertas' },
@@ -71,7 +103,7 @@ export const useSearchData = () => {
 
         setSearchIndex(index)
       } catch (error) {
-        console.error('Error loading search data:', error)
+        console.error('❌ Error loading search data:', error)
         setSearchIndex([])
       } finally {
         setLoading(false)
