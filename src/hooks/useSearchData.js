@@ -24,19 +24,14 @@ export const useSearchData = () => {
         const index = []
 
         // Agregar productos
-		const formattedProducts = productsData
-		  .map(formatProductData)
-		  .filter(Boolean)
-
-		formattedProducts.forEach(product => {
-		  index.push({
-			type: 'product',
-			name: product.nombre,
-			id: product.id,
-			action: `/menu?search=${encodeURIComponent(product.nombre)}`
-		  })
-		})
-
+        productsData.forEach(product => {
+          index.push({
+            type: 'product',
+            name: product.nombre,
+            id: product.id,
+            action: `/menu?search=${encodeURIComponent(product.nombre)}`
+          })
+        })
 
         // Agregar categorías
         categoriesData.forEach(category => {
