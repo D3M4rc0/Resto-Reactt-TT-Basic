@@ -10,7 +10,7 @@ const api = axios.create({
   timeout: 10000,
 })
 
-// Interceptor para agregar token de autenticación
+///// Interceptor para agregar token de autenticación
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
@@ -23,7 +23,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
-// Interceptor para manejar errores
+///// Interceptor para manejar errores
 api.interceptors.response.use(
   (response) => {
     console.log(`✅ API Success: ${response.status} ${response.config.url}`)
@@ -32,7 +32,7 @@ api.interceptors.response.use(
   (error) => {
     console.error(`❌ API Error: ${error.response?.status} ${error.config?.url}`, error.response?.data)
     
-    // Si el token expiró, limpiar localStorage
+    ///// Si el token expiró, limpiar localStorage
     if (error.response?.status === 401) {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
@@ -42,125 +42,125 @@ api.interceptors.response.use(
   }
 )
 
-// Servicio de Productos
+///// Servicio de Productos
 export const productService = {
-  // Obtener todos los productos (27 productos)
+  ///// Obtener todos los productos (27 productos)
   getAllProducts: () => api.get('/productos/?limit=27'),
   
-  // Obtener productos paginados (9 por página)
+  ///// Obtener productos paginados (9 por página)
   getProducts: (page = 1, limit = 9) => 
     api.get(`/productos/?page=${page}&limit=${limit}`),
   
-  // Obtener producto por ID
+  ///// Obtener producto por ID
   getProductById: (id) => 
     api.get(`/productos/${id}`),
   
-  // Obtener productos por categoría
+  ///// Obtener productos por categoría
   getProductsByCategory: (category, page = 1, limit = 9) => 
     api.get(`/productos/?categoria=${category}&page=${page}&limit=${limit}`),
   
-  // Buscar productos
+  ///// Buscar productos
   searchProducts: (query, page = 1, limit = 9) => 
     api.get(`/productos/?search=${query}&page=${page}&limit=${limit}`),
   
-  // Obtener productos destacados (para especialidades del chef)
+  ///// Obtener productos destacados (para especialidades del chef)
   getFeaturedProducts: () => 
     api.get('/productos/?limit=8'),
   
-  // Obtener productos en oferta (para sección ofertas)
+  ///// Obtener productos en oferta (para sección ofertas)
   getOffers: () => 
     api.get('/productos/?limit=8')
 }
 
-// Servicio de Categorías
+///// Servicio de Categorías
 export const categoryService = {
-  // Obtener todas las categorías (13 categorías)
+  ///// Obtener todas las categorías (13 categorías)
   getCategories: () => api.get('/categorias'),
   
-  // Obtener categoría por ID
+  ///// Obtener categoría por ID
   getCategoryById: (id) => api.get(`/categorias/${id}`),
   
-  // Obtener productos de una categoría específica
+  ///// Obtener productos de una categoría específica
   getCategoryProducts: (categoryId) => 
     api.get(`/productos/?categoria_id=${categoryId}`)
 }
 
-// Servicio de Usuarios
+///// Servicio de Usuarios
 export const userService = {
-  // Obtener información del usuario actual
+  ///// Obtener información del usuario actual
   getCurrentUser: () => api.get('/auth/me'),
   
-  // Actualizar perfil de usuario
+  ///// Actualizar perfil de usuario
   updateProfile: (userData) => 
     api.put('/auth/me', userData),
   
-  // Obtener todos los usuarios (12 usuarios - solo admin)
+  ///// Obtener todos los usuarios (12 usuarios - solo admin)
   getUsers: () => api.get('/usuarios')
 }
 
-// Servicio de Reseñas
+///// Servicio de Reseñas
 export const reviewService = {
-  // Obtener todas las reseñas (10 reseñas)
+  ///// Obtener todas las reseñas (10 reseñas)
   getReviews: () => api.get('/reseñas'),
   
-  // Obtener reseñas de un producto específico
+  ///// Obtener reseñas de un producto específico
   getProductReviews: (productId) => 
     api.get(`/reseñas/?producto_id=${productId}`),
   
-  // Crear nueva reseña
+  ///// Crear nueva reseña
   createReview: (reviewData) => 
     api.post('/reseñas', reviewData),
   
-  // Obtener reseñas del usuario actual
+  ///// Obtener reseñas del usuario actual
   getUserReviews: (userId) => 
     api.get(`/reseñas/?usuario_id=${userId}`)
 }
 
-// Servicio de Carrito
+///// Servicio de Carrito
 export const cartService = {
-  // Obtener carrito del usuario
+  ///// Obtener carrito del usuario
   getCart: (userId) => 
     api.get(`/carrito/?usuario_id=${userId}`),
   
-  // Agregar producto al carrito
+  ///// Agregar producto al carrito
   addToCart: (cartItem) => 
     api.post('/carrito', cartItem),
   
-  // Actualizar item del carrito
+  ///// Actualizar item del carrito
   updateCartItem: (itemId, quantity) => 
     api.put(`/carrito/${itemId}`, { cantidad: quantity }),
   
-  // Eliminar item del carrito
+  ///// Eliminar item del carrito
   removeFromCart: (itemId) => 
     api.delete(`/carrito/${itemId}`),
   
-  // Limpiar carrito
+  ///// Limpiar carrito
   clearCart: (userId) => 
     api.delete(`/carrito/clear/${userId}`)
 }
 
-// Servicio de Pedidos
+///// Servicio de Pedidos
 export const orderService = {
-  // Obtener pedidos del usuario
+  ///// Obtener pedidos del usuario
   getUserOrders: (userId) => 
     api.get(`/pedidos/?usuario_id=${userId}`),
   
-  // Crear nuevo pedido
+  ///// Crear nuevo pedido
   createOrder: (orderData) => 
     api.post('/pedidos', orderData),
   
-  // Obtener detalles de un pedido
+  ///// Obtener detalles de un pedido
   getOrderById: (orderId) => 
     api.get(`/pedidos/${orderId}`),
   
-  // Actualizar estado del pedido
+  ///// Actualizar estado del pedido
   updateOrderStatus: (orderId, status) => 
     api.put(`/pedidos/${orderId}`, { estado: status })
 }
 
-// Servicio de Autenticación - CORREGIDO Y COMPLETO
+///// Servicio de Autenticación - CORREGIDO Y COMPLETO
 export const authService = {
-  // Login - La API espera FormData con username (email) y password
+  ///// Login - La API espera FormData con username (email) y password
   login: (credentials) => {
     const formData = new URLSearchParams()
     formData.append('username', credentials.email)
@@ -173,7 +173,7 @@ export const authService = {
     })
   },
   
-  // Registro - La API espera FormData
+  ///// Registro - La API espera FormData
   register: (userData) => {
     const formData = new URLSearchParams()
     formData.append('nombre', userData.nombre)
@@ -181,7 +181,7 @@ export const authService = {
     formData.append('email', userData.email)
     formData.append('password', userData.password)
     
-    // Campos opcionales
+    ///// Campos opcionales
     if (userData.telefono) formData.append('telefono', userData.telefono)
     if (userData.direccion) formData.append('direccion', userData.direccion)
     if (userData.ciudad) formData.append('ciudad', userData.ciudad)
@@ -194,49 +194,49 @@ export const authService = {
     })
   },
   
-  // Obtener información del usuario actual
+  ///// Obtener información del usuario actual
   getMe: () => api.get('/auth/me'),
   
-  // Actualizar perfil del usuario actual
+  ///// Actualizar perfil del usuario actual
   updateMe: (userData) => api.put('/auth/me', userData),
   
-  // Refresh token
+  ///// Refresh token
   refreshToken: (refreshToken) => 
     api.post(`/auth/refresh?refresh_token=${refreshToken}`),
   
-  // Verificar token (si existe en tu API)
+  ///// Verificar token (si existe en tu API)
   verifyToken: () => api.get('/auth/verify'),
   
-  // Logout - Tu API NO tiene este endpoint, así que lo manejamos localmente
+  ///// Logout - Tu API NO tiene este endpoint, así que lo manejamos localmente
   logout: () => {
-    // Limpiar localStorage
+    ///// Limpiar localStorage
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     return Promise.resolve({ success: true })
   }
 }
 
-// Servicio de Cupones
+///// Servicio de Cupones
 export const couponService = {
-  // Obtener todos los cupones
+  ///// Obtener todos los cupones
   getCoupons: () => api.get('/cupones'),
   
-  // Validar cupón
+  ///// Validar cupón
   validateCoupon: (code) => 
     api.get(`/cupones/validate/${code}`),
   
-  // Aplicar cupón
+  ///// Aplicar cupón
   applyCoupon: (orderData) => 
     api.post('/cupones/apply', orderData)
 }
 
-// Servicio de Pagos
+///// Servicio de Pagos
 export const paymentService = {
-  // Procesar pago
+  ///// Procesar pago
   processPayment: (paymentData) => 
     api.post('/pagos', paymentData),
   
-  // Obtener historial de pagos
+  ///// Obtener historial de pagos
   getPaymentHistory: (userId) => 
     api.get(`/pagos/?usuario_id=${userId}`)
 }

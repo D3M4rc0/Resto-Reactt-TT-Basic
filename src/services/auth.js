@@ -1,9 +1,9 @@
 import { authService, userService } from './api'
 import { handleApiError } from '../utils/apiHelpers'
 
-// Servicio de autenticación mejorado
+///// Servicio de autenticación mejorado
 export const auth = {
-  // Login con email y password
+  ///// Login con email y password
   login: async (credentials) => {
     try {
       const response = await authService.login(credentials)
@@ -22,7 +22,7 @@ export const auth = {
     }
   },
 
-  // Registro de nuevo usuario
+  ///// Registro de nuevo usuario
   register: async (userData) => {
     try {
       const response = await authService.register(userData)
@@ -41,7 +41,7 @@ export const auth = {
     }
   },
 
-  // Verificar token
+  ///// Verificar token
   verifyToken: async () => {
     try {
       const response = await authService.verifyToken()
@@ -60,19 +60,19 @@ export const auth = {
     }
   },
 
-  // Logout
+  ///// Logout
   logout: async () => {
     try {
       await authService.logout()
       return { success: true }
     } catch (error) {
       console.error('Logout error:', error)
-      // Aún así consideramos éxito para limpiar el estado local
+      ///// Aún así consideramos éxito para limpiar el estado local
       return { success: true }
     }
   },
 
-  // Actualizar perfil
+  ///// Actualizar perfil
   updateProfile: async (userId, profileData) => {
     try {
       const response = await userService.updateProfile(userId, profileData)
@@ -91,10 +91,10 @@ export const auth = {
     }
   },
 
-  // Cambiar contraseña
+  ///// Cambiar contraseña
   changePassword: async (userId, passwordData) => {
     try {
-      // En una implementación real, tendrías un endpoint específico para cambiar contraseña
+      ///// En una implementación real, tendrías un endpoint específico para cambiar contraseña
       const response = await userService.updateProfile(userId, { 
         password: passwordData.newPassword 
       })
@@ -112,10 +112,10 @@ export const auth = {
     }
   },
 
-  // Recuperar contraseña
+  ///// Recuperar contraseña
   forgotPassword: async (email) => {
     try {
-      // Simular envío de email de recuperación
+      ///// Simular envío de email de recuperación
       await new Promise(resolve => setTimeout(resolve, 1000))
       return {
         success: true,
@@ -129,13 +129,13 @@ export const auth = {
     }
   },
 
-  // Login social (preparado para implementación futura)
+  ///// Login social (preparado para implementación futura)
   socialLogin: async (provider, token) => {
     try {
-      // Simular login social
+      ///// Simular login social
       await new Promise(resolve => setTimeout(resolve, 1500))
       
-      // En producción, integrarías con OAuth providers
+      ///// En producción, integrarías con OAuth providers
       const mockUser = {
         id: Date.now(),
         nombre: 'Usuario Social',

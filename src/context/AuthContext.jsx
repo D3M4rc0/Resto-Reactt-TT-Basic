@@ -1,4 +1,4 @@
-// src/context/AuthContext.jsx
+///// src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Verificar si hay usuario en localStorage al cargar
+    ///// Verificar si hay usuario en localStorage al cargar
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
       try {

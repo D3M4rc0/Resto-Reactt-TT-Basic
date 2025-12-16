@@ -1,4 +1,4 @@
-// Animaciones y transiciones
+///// Animaciones y transiciones
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -61,7 +61,7 @@
   }
 }
 
-// Clases de animación
+///// Clases de animación
 .fade-in {
   animation: fadeIn 0.5s ease-out;
 }
@@ -78,7 +78,7 @@
   animation: pulse 2s infinite;
 }
 
-// Efectos de hover
+///// Efectos de hover
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   
@@ -96,7 +96,7 @@
   }
 }
 
-// Transiciones
+///// Transiciones
 .transition-all {
   transition: all 0.3s ease;
 }

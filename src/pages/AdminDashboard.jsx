@@ -21,10 +21,10 @@ const AdminDashboard = () => {
   const [timeRange, setTimeRange] = useState('month');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Verificar si es admin
+  ///// Verificar si es admin
   const isAdmin = user && user.rol === 'admin';
 
-  // Si no es admin, mostrar acceso denegado
+  ///// Si no es admin, mostrar acceso denegado
   if (!isAdmin) {
     return (
       <div className="admin-access-denied">
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
     );
   }
 
-  // Función para formatear fecha
+  ///// Función para formatear fecha
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     try {
@@ -57,7 +57,7 @@ const AdminDashboard = () => {
     }
   };
 
-  // Renderizar contenido según la pestaña activa
+  ///// Renderizar contenido según la pestaña activa
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':

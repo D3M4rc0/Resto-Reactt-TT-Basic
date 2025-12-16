@@ -1,4 +1,4 @@
-// Constantes de la aplicación
+///// Constantes de la aplicación
 export const APP_CONFIG = {
   NAME: 'Le Marc Gourmet',
   DESCRIPTION: 'Restaurante de alta cocina con experiencia gastronómica única',
@@ -13,7 +13,7 @@ export const APP_CONFIG = {
   }
 }
 
-// Categorías del restaurante
+///// Categorías del restaurante
 export const CATEGORIES = {
   COMIDAS_SALADAS: 'Comidas Saladas',
   COMIDAS_DULCES: 'Comidas Dulces',
@@ -25,7 +25,7 @@ export const CATEGORIES = {
   BEBIDAS_SIN_ALCOHOL: 'Bebidas Sin Alcohol'
 }
 
-// Estados de pedidos
+///// Estados de pedidos
 export const ORDER_STATUS = {
   PENDING: 'pendiente',
   CONFIRMED: 'confirmado',
@@ -35,7 +35,7 @@ export const ORDER_STATUS = {
   CANCELLED: 'cancelado'
 }
 
-// Métodos de pago
+///// Métodos de pago
 export const PAYMENT_METHODS = {
   CASH: 'efectivo',
   CARD: 'tarjeta',
@@ -43,7 +43,7 @@ export const PAYMENT_METHODS = {
   TRANSFER: 'transferencia'
 }
 
-// Roles de usuario
+///// Roles de usuario
 export const USER_ROLES = {
   ADMIN: 'admin',
   USER: 'usuario',
@@ -51,7 +51,7 @@ export const USER_ROLES = {
   WAITER: 'mesero'
 }
 
-// Horario del restaurante
+///// Horario del restaurante
 export const RESTAURANT_HOURS = {
   LUNCH: {
     OPEN: '12:00',
@@ -64,17 +64,17 @@ export const RESTAURANT_HOURS = {
   DAYS: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
 }
 
-// URLs de assets
+///// URLs de assets
 export const ASSET_PATHS = {
-  LOGO: logoImage, // ✅ Usar la importación, no string
-  PLACEHOLDER: placeholderImage, // ✅ Usar la importación
+  LOGO: logoImage, ///// ✅ Usar la importación, no string
+  PLACEHOLDER: placeholderImage, ///// ✅ Usar la importación
   BANNER_VIDEO: '/src/assets/videos/banner-video.webp',
-  HERO_BG: '/src/assets/images/hero-bg.jpg' // ✅ Ruta corregida
+  HERO_BG: '/src/assets/images/hero-bg.jpg' ///// ✅ Ruta corregida
 }
 
-// Configuración de cache
+///// Configuración de cache
 export const CACHE_CONFIG = {
-  PRODUCTS_TTL: 10 * 60 * 1000, // 10 minutos
-  CATEGORIES_TTL: 30 * 60 * 1000, // 30 minutos
-  REVIEWS_TTL: 15 * 60 * 1000 // 15 minutos
+  PRODUCTS_TTL: 10 * 60 * 1000, ///// 10 minutos
+  CATEGORIES_TTL: 30 * 60 * 1000, ///// 30 minutos
+  REVIEWS_TTL: 15 * 60 * 1000 ///// 15 minutos
 }

@@ -14,7 +14,7 @@ const cartReducer = (state, action) => {
               ? { 
                   ...item, 
                   quantity: item.quantity + 1,
-                  // Mantener los precios si ya existen
+                  ///// Mantener los precios si ya existen
                   precio_final: item.precio_final || action.payload.precio_final || item.precio,
                   precio_original: item.precio_original || action.payload.precio_original || item.precio,
                   descuento_aplicado: item.descuento_aplicado || action.payload.descuento_aplicado || 0
@@ -28,7 +28,7 @@ const cartReducer = (state, action) => {
         items: [...state.items, { 
           ...action.payload, 
           quantity: 1,
-          // Usar precio_final si existe, si no usar precio
+          ///// Usar precio_final si existe, si no usar precio
           precio_final: action.payload.precio_final || action.payload.precio,
           precio_original: action.payload.precio_original || action.payload.precio,
           descuento_aplicado: action.payload.descuento_aplicado || 0
@@ -75,7 +75,7 @@ const initialState = {
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
-  // Cargar carrito desde localStorage
+  ///// Cargar carrito desde localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem('restaurant-cart')
     if (savedCart) {
@@ -83,7 +83,7 @@ export const CartProvider = ({ children }) => {
     }
   }, [])
 
-  // Guardar carrito en localStorage
+  ///// Guardar carrito en localStorage
   useEffect(() => {
     localStorage.setItem('restaurant-cart', JSON.stringify(state.items))
   }, [state.items])
@@ -108,7 +108,7 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'CLEAR_CART' })
   }
 
-  // ===== MODIFICADO: Usar precio_final si existe =====
+  ///// ===== MODIFICADO: Usar precio_final si existe =====
   const getCartTotal = () => {
     return state.items.reduce((total, item) => {
       const precio = item.precio_final || item.precio;

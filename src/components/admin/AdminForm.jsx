@@ -6,6 +6,7 @@ const AdminForm = ({
   initialData = {}, 
   onSubmit, 
   onCancel,
+  showActions = true,
   submitLabel = 'Guardar',
   cancelLabel = 'Cancelar',
   title = 'Formulario',
@@ -13,17 +14,21 @@ const AdminForm = ({
 }) => {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
+  const [imageError, setImageError] = useState(false); ///// Estado para errores de imagen
 
-  // Inicializar formData con valores iniciales
+  ///// Inicializar formData con valores iniciales
   useEffect(() => {
     const initialFormData = {};
     fields.forEach(field => {
-      initialFormData[field.name] = initialData[field.name] || field.defaultValue || '';
+      ///// No inicializamos campos de tipo imagePreview
+      if (field.type !== 'imagePreview') {
+        initialFormData[field.name] = initialData[field.name] || field.defaultValue || '';
+      }
     });
     setFormData(initialFormData);
   }, [fields, initialData]);
 
-  // Manejar cambios en los inputs
+  ///// Manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -31,13 +36,18 @@ const AdminForm = ({
       [name]: type === 'checkbox' ? checked : value
     }));
     
-    // Limpiar error del campo
+    ///// Limpiar error del campo
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+    
+    ///// Si cambia la URL de la imagen, limpiar error de imagen
+    if (name === 'imagen_url') {
+      setImageError(false);
+    }
   };
 
-  // Manejar cambios en selects
+  ///// Manejar cambios en selects
   const handleSelectChange = (name, value) => {
     setFormData(prev => ({
       ...prev,
@@ -49,39 +59,52 @@ const AdminForm = ({
     }
   };
 
-  // Validar formulario
+  ///// Manejar error de carga de imagen
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  ///// Manejar carga exitosa de imagen
+  const handleImageLoad = () => {
+    setImageError(false);
+  };
+
+  ///// Validar formulario
   const validateForm = () => {
     const newErrors = {};
     
     fields.forEach(field => {
       const value = formData[field.name];
       
-      // Validación de requerido
+      ///// Saltar validación para campos de tipo imagePreview
+      if (field.type === 'imagePreview') return;
+      
+      ///// Validación de requerido
       if (field.required && !value && value !== false && value !== 0) {
         newErrors[field.name] = `${field.label} es requerido`;
       }
       
-      // Validación de email
+      ///// Validación de email
       if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
         newErrors[field.name] = 'Email inválido';
       }
       
-      // Validación de número mínimo
+      ///// Validación de número mínimo
       if (field.type === 'number' && field.min !== undefined && value < field.min) {
         newErrors[field.name] = `Mínimo ${field.min}`;
       }
       
-      // Validación de número máximo
+      ///// Validación de número máximo
       if (field.type === 'number' && field.max !== undefined && value > field.max) {
         newErrors[field.name] = `Máximo ${field.max}`;
       }
       
-      // Validación de longitud mínima
+      ///// Validación de longitud mínima
       if (field.minLength && value && value.length < field.minLength) {
         newErrors[field.name] = `Mínimo ${field.minLength} caracteres`;
       }
       
-      // Validación de longitud máxima
+      ///// Validación de longitud máxima
       if (field.maxLength && value && value.length > field.maxLength) {
         newErrors[field.name] = `Máximo ${field.maxLength} caracteres`;
       }
@@ -91,21 +114,24 @@ const AdminForm = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  // Manejar envío del formulario
+  ///// Manejar envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     
     if (validateForm()) {
-      // Preparar datos según el tipo de campo
+      ///// Preparar datos según el tipo de campo
       const processedData = { ...formData };
       
       fields.forEach(field => {
-        // Convertir números
+        ///// Saltar campos de tipo imagePreview
+        if (field.type === 'imagePreview') return;
+        
+        ///// Convertir números
         if (field.type === 'number' && processedData[field.name]) {
           processedData[field.name] = parseFloat(processedData[field.name]);
         }
         
-        // Convertir booleanos
+        ///// Convertir booleanos
         if (field.type === 'checkbox') {
           processedData[field.name] = Boolean(processedData[field.name]);
         }
@@ -115,15 +141,71 @@ const AdminForm = ({
     }
   };
 
-  // Renderizar campo según tipo
-  const renderField = (field) => {
+  ///// Renderizar campo según tipo
+	const renderField = (field) => {
+	  console.log('🔍 Renderizando campo:', field.name, 'tipo:', field.type); ///// AÑADE ESTO
+	  
+	  if (field.type === 'imagePreview') {
+		///// Campo especial para vista previa de imagen
+		const imageUrl = formData[field.sourceField] || '';
+		
+		return (
+		  <div 
+			className="form-group half-width" 
+			key={field.name}
+			style={{
+			  gridColumn: '2', ///// FORZAR columna derecha
+			  gridRow: '6',    ///// FORZAR fila 6 (misma que checkbox)
+			  marginTop: '24px', ///// Para alinearse con checkbox
+			  height: '150px'
+			}}
+		  >
+			{/* Label vacío pero oculto */}
+			<label style={{display: 'none'}}>{field.label}</label>
+			<div className="image-preview-container" style={{height: '100%'}}>
+			  {imageUrl ? (
+				<div className="image-preview-wrapper" style={{height: '100%'}}>
+				  <img
+					src={imageUrl}
+					alt="Vista previa"
+					className="image-preview"
+					style={{
+					  maxWidth: '100%',
+					  maxHeight: '130px',
+					  display: 'block',
+					  margin: '0 auto'
+					}}
+					onError={(e) => {
+					  e.target.style.display = 'none';
+					  const wrapper = e.target.parentElement;
+					  wrapper.innerHTML = `
+						<div style="text-align: center; padding: 20px; color: #666;">
+						  <div style="font-size: 24px; margin-bottom: 8px;">❌</div>
+						  <p style="font-size: 12px;">No se pudo cargar la imagen</p>
+						</div>
+					  `;
+					}}
+				  />
+				</div>
+			  ) : (
+				<div className="image-preview-placeholder" style={{height: '100%'}}>
+				  <div className="placeholder-icon">🖼️</div>
+				  <p>Ingresa una URL de imagen arriba para ver la vista previa</p>
+				</div>
+			  )}
+			</div>
+		  </div>
+		);
+	  }
+  
+    
     const value = formData[field.name] || '';
     const error = errors[field.name];
     
     switch (field.type) {
       case 'textarea':
         return (
-          <div className="form-group" key={field.name}>
+          <div className={`form-group ${field.fullWidth ? 'full-width' : 'half-width'}`} key={field.name}>
             <label htmlFor={field.name}>
               {field.label}
               {field.required && <span className="required">*</span>}
@@ -145,7 +227,7 @@ const AdminForm = ({
       
       case 'select':
         return (
-          <div className="form-group" key={field.name}>
+          <div className={`form-group ${field.fullWidth ? 'full-width' : 'half-width'}`} key={field.name}>
             <label htmlFor={field.name}>
               {field.label}
               {field.required && <span className="required">*</span>}
@@ -172,7 +254,7 @@ const AdminForm = ({
       
       case 'checkbox':
         return (
-          <div className="form-group checkbox-group" key={field.name}>
+          <div className={`form-group ${field.fullWidth ? 'full-width' : 'half-width'} checkbox-group`} key={field.name}>
             <label>
               <input
                 type="checkbox"
@@ -193,7 +275,7 @@ const AdminForm = ({
       
       case 'file':
         return (
-          <div className="form-group" key={field.name}>
+          <div className={`form-group ${field.fullWidth ? 'full-width' : 'half-width'}`} key={field.name}>
             <label htmlFor={field.name}>
               {field.label}
               {field.required && <span className="required">*</span>}
@@ -214,7 +296,7 @@ const AdminForm = ({
       
       default:
         return (
-          <div className="form-group" key={field.name}>
+          <div className={`form-group ${field.fullWidth ? 'full-width' : 'half-width'}`} key={field.name}>
             <label htmlFor={field.name}>
               {field.label}
               {field.required && <span className="required">*</span>}
@@ -241,45 +323,50 @@ const AdminForm = ({
     }
   };
 
-  return (
-    <div className="admin-form">
-      <div className="form-header">
-        <h3>{title}</h3>
-      </div>
-      
-      <form onSubmit={handleSubmit}>
-        <div className="form-grid">
-          {fields.map(field => renderField(field))}
-        </div>
-        
-        <div className="form-actions">
-          <button
-            type="button"
-            onClick={onCancel}
-            className="btn-cancel"
-            disabled={loading}
-          >
-            {cancelLabel}
-          </button>
-          
-          <button
-            type="submit"
-            className="btn-submit"
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <span className="loading-spinner"></span>
-                Guardando...
-              </>
-            ) : (
-              submitLabel
-            )}
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+	return (
+	  <div className="admin-form">
+		{title && ( ///// Solo muestra si hay título
+		  <div className="form-header">
+			<h3>{title}</h3>
+		  </div>
+		)}
+		
+		<form onSubmit={handleSubmit}>
+		  <div className="form-grid">
+			{fields.map(field => renderField(field))}
+		  </div>
+		  
+		  {/* 👇 SOLO muestra botones si showActions es true */}
+		  {showActions && (
+			<div className="form-actions">
+			  <button
+				type="button"
+				onClick={onCancel}
+				className="btn-cancel"
+				disabled={loading}
+			  >
+				{cancelLabel}
+			  </button>
+			  
+			  <button
+				type="submit"
+				className="btn-submit"
+				disabled={loading}
+			  >
+				{loading ? (
+				  <>
+					<span className="loading-spinner"></span>
+					Guardando...
+				  </>
+				) : (
+				  submitLabel
+				)}
+			  </button>
+			</div>
+		  )}
+		</form>
+	  </div>
+	);
 };
 
 export default AdminForm;

@@ -1,9 +1,9 @@
 import { productService, categoryService, reviewService } from './api'
 import { handleApiError, productCache, categoryCache } from '../utils/apiHelpers'
 
-// Servicio de productos mejorado con cache
+///// Servicio de productos mejorado con cache
 export const products = {
-  // Obtener todos los productos
+  ///// Obtener todos los productos
   getAllProducts: async (useCache = true) => {
     const cacheKey = 'all-products'
     
@@ -19,7 +19,7 @@ export const products = {
       const response = await productService.getAllProducts()
       const productsData = response.data.data || []
       
-      // Guardar en cache
+      ///// Guardar en cache
       productCache.set(cacheKey, productsData)
       
       return {
@@ -37,7 +37,7 @@ export const products = {
     }
   },
 
-  // Obtener productos paginados
+  ///// Obtener productos paginados
   getProducts: async (page = 1, limit = 9) => {
     const cacheKey = `products-page-${page}-limit-${limit}`
     
@@ -46,7 +46,7 @@ export const products = {
       const productsData = response.data.data || []
       const metadata = response.data.metadata || {}
       
-      // Cachear resultados paginados
+      ///// Cachear resultados paginados
       productCache.set(cacheKey, { products: productsData, metadata })
       
       return {
@@ -66,7 +66,7 @@ export const products = {
     }
   },
 
-  // Obtener producto por ID
+  ///// Obtener producto por ID
   getProductById: async (id) => {
     const cacheKey = `product-${id}`
     
@@ -96,7 +96,7 @@ export const products = {
     }
   },
 
-  // Buscar productos
+  ///// Buscar productos
   searchProducts: async (query, page = 1, limit = 9) => {
     const cacheKey = `search-${query}-page-${page}`
     
@@ -104,7 +104,7 @@ export const products = {
       const response = await productService.searchProducts(query, page, limit)
       const productsData = response.data.data || []
       
-      // Cachear búsquedas por 2 minutos
+      ///// Cachear búsquedas por 2 minutos
       productCache.set(cacheKey, productsData, 2 * 60 * 1000)
       
       return {
@@ -123,7 +123,7 @@ export const products = {
     }
   },
 
-  // Obtener productos por categoría
+  ///// Obtener productos por categoría
   getProductsByCategory: async (category, page = 1, limit = 9) => {
     const cacheKey = `category-${category}-page-${page}`
     
@@ -154,7 +154,7 @@ export const products = {
     }
   },
 
-  // Obtener categorías
+  ///// Obtener categorías
   getCategories: async () => {
     const cacheKey = 'all-categories'
     
@@ -184,7 +184,7 @@ export const products = {
     }
   },
 
-  // Obtener reseñas de producto
+  ///// Obtener reseñas de producto
   getProductReviews: async (productId) => {
     const cacheKey = `reviews-${productId}`
     
@@ -192,7 +192,7 @@ export const products = {
       const response = await reviewService.getProductReviews(productId)
       const reviewsData = response.data.data || []
       
-      // Cachear reseñas por 5 minutos
+      ///// Cachear reseñas por 5 minutos
       productCache.set(cacheKey, reviewsData, 5 * 60 * 1000)
       
       return {
@@ -210,12 +210,12 @@ export const products = {
     }
   },
 
-  // Agregar reseña
+  ///// Agregar reseña
   addReview: async (reviewData) => {
     try {
       const response = await reviewService.createReview(reviewData)
       
-      // Invalidar cache de reseñas para este producto
+      ///// Invalidar cache de reseñas para este producto
       productCache.delete(`reviews-${reviewData.producto_id}`)
       
       return {
@@ -232,14 +232,14 @@ export const products = {
     }
   },
 
-  // Limpiar cache
+  ///// Limpiar cache
   clearCache: () => {
     productCache.clear()
     categoryCache.clear()
     console.log('🧹 Product cache cleared')
   },
 
-  // Obtener productos destacados
+  ///// Obtener productos destacados
   getFeaturedProducts: async () => {
     const cacheKey = 'featured-products'
     

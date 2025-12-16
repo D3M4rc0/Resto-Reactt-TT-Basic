@@ -1,8 +1,8 @@
-// Helper para formatear datos de productos - CORREGIDO
+///// Helper para formatear datos de productos - CORREGIDO
 export const formatProductData = (product) => {
   if (!product) return null
   
-  // Múltiples formatos posibles de la API
+  ///// Múltiples formatos posibles de la API
   const productData = product.data || product.attributes || product
   
   return {
@@ -17,14 +17,14 @@ export const formatProductData = (product) => {
     imagen_url: productData.imagen_url || productData.image_url || productData.imagen || '/src/assets/images/placeholder-2.webp',
     activo: productData.activo !== false,
     fecha_creacion: productData.fecha_creacion || productData.created_at,
-    // Campos calculados
+    ///// Campos calculados
     en_oferta: parseFloat(productData.precio || productData.price || 0) > 50,
     es_nuevo: isProductNew(productData.fecha_creacion || productData.created_at),
     calificacion: parseFloat(productData.calificacion || productData.rating || 0)
   }
 }
 
-// Helper para formatear datos de reseñas - CORREGIDO
+///// Helper para formatear datos de reseñas - CORREGIDO
 export const formatReviewData = (review) => {
   if (!review) return null
   
@@ -42,7 +42,7 @@ export const formatReviewData = (review) => {
   }
 }
 
-// Helper para formatear datos de categorías - CORREGIDO
+///// Helper para formatear datos de categorías - CORREGIDO
 export const formatCategoryData = (category) => {
   if (!category) return null
   
@@ -59,7 +59,7 @@ export const formatCategoryData = (category) => {
   }
 }
 
-// Helper para formatear datos de usuarios - CORREGIDO
+///// Helper para formatear datos de usuarios - CORREGIDO
 export const formatUserData = (user) => {
   if (!user) return null
   
@@ -81,7 +81,7 @@ export const formatUserData = (user) => {
   }
 }
 
-// Verificar si un producto es nuevo (menos de 30 días)
+///// Verificar si un producto es nuevo (menos de 30 días)
 export const isProductNew = (fechaCreacion) => {
   if (!fechaCreacion) return false
   
@@ -92,7 +92,7 @@ export const isProductNew = (fechaCreacion) => {
   return diferenciaDias <= 30
 }
 
-// Calcular promedios de calificaciones
+///// Calcular promedios de calificaciones
 export const calculateAverageRating = (reviews) => {
   if (!reviews || reviews.length === 0) return 0
   
@@ -103,23 +103,23 @@ export const calculateAverageRating = (reviews) => {
   return parseFloat((sum / reviewsAprobadas.length).toFixed(1))
 }
 
-// Generar estrellas para display
+///// Generar estrellas para display
 export const generateStarRating = (rating) => {
   const stars = []
   const fullStars = Math.floor(rating)
   const hasHalfStar = rating % 1 >= 0.5
   
-  // Estrellas llenas
+  ///// Estrellas llenas
   for (let i = 0; i < fullStars; i++) {
     stars.push('★')
   }
   
-  // Media estrella
+  ///// Media estrella
   if (hasHalfStar) {
     stars.push('½')
   }
   
-  // Estrellas vacías
+  ///// Estrellas vacías
   const emptyStars = 5 - stars.length
   for (let i = 0; i < emptyStars; i++) {
     stars.push('☆')
@@ -134,7 +134,7 @@ export const generateStarRating = (rating) => {
   }
 }
 
-// Filtrar productos por categoría
+///// Filtrar productos por categoría
 export const filterProductsByCategory = (products, categoryName) => {
   if (!products || !Array.isArray(products)) return []
   if (!categoryName || categoryName === 'todos') return products
@@ -144,7 +144,7 @@ export const filterProductsByCategory = (products, categoryName) => {
   )
 }
 
-// Buscar productos por texto
+///// Buscar productos por texto
 export const searchProducts = (products, searchTerm) => {
   if (!products || !Array.isArray(products)) return []
   if (!searchTerm) return products
@@ -158,7 +158,7 @@ export const searchProducts = (products, searchTerm) => {
   )
 }
 
-// Ordenar productos
+///// Ordenar productos
 export const sortProducts = (products, sortBy = 'nombre') => {
   if (!products || !Array.isArray(products)) return []
   
@@ -185,7 +185,7 @@ export const sortProducts = (products, sortBy = 'nombre') => {
   }
 }
 
-// Paginar array de productos
+///// Paginar array de productos
 export const paginateProducts = (products, page = 1, limit = 9) => {
   if (!products || !Array.isArray(products)) return { data: [], totalPages: 1 }
   
@@ -204,20 +204,20 @@ export const paginateProducts = (products, page = 1, limit = 9) => {
   }
 }
 
-// Calcular total del carrito CON DESCUENTOS - MODIFICADO
+///// Calcular total del carrito CON DESCUENTOS - MODIFICADO
 export const calculateCartTotals = (cartItems) => {
   if (!cartItems || !Array.isArray(cartItems)) {
     return { subtotal: 0, iva: 0, total: 0, itemsCount: 0, ahorroTotal: 0 }
   }
   
-  // Usar precio_final si existe (precio con descuento), si no usar precio original
+  ///// Usar precio_final si existe (precio con descuento), si no usar precio original
   const subtotal = cartItems.reduce((sum, item) => {
     const precio = item.precio_final || item.precio || item.price || 0;
     const cantidad = item.quantity || item.cantidad || 0;
     return sum + (precio * cantidad);
   }, 0);
   
-  // Calcular ahorro total por descuentos
+  ///// Calcular ahorro total por descuentos
   const ahorroTotal = cartItems.reduce((sum, item) => {
     if (item.precio_original && item.precio_final) {
       const ahorroPorItem = (item.precio_original - item.precio_final) * (item.quantity || 1);
@@ -226,7 +226,7 @@ export const calculateCartTotals = (cartItems) => {
     return sum;
   }, 0);
   
-  const iva = subtotal * 0.21; // 21% IVA
+  const iva = subtotal * 0.21; ///// 21% IVA
   const total = subtotal + iva;
   const itemsCount = cartItems.reduce((count, item) => count + (item.quantity || item.cantidad || 0), 0);
   
@@ -239,14 +239,14 @@ export const calculateCartTotals = (cartItems) => {
   };
 };
 
-// Validación robusta de email
+///// Validación robusta de email
 export const validateEmail = (email) => {
   if (!email || typeof email !== 'string') return false;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailRegex.test(email) && email.length <= 254;
 };
 
-// Validación robusta de teléfono
+///// Validación robusta de teléfono
 export const validatePhone = (phone) => {
   if (!phone || typeof phone !== 'string') return false;
   
@@ -257,16 +257,16 @@ export const validatePhone = (phone) => {
   if (cleanedPhone.startsWith('0')) return false;
   
   const patterns = [
-    /^549\d{8,10}$/,      // +54 9 11 1234-5678
-    /^54\d{9,11}$/,        // +54 11 1234-5678  
-    /^9\d{8,10}$/,         // 9 11 1234-5678
-    /^\d{6,10}$/           // 11 1234-5678
+    /^549\d{8,10}$/,      ///// +54 9 11 1234-5678
+    /^54\d{9,11}$/,        ///// +54 11 1234-5678  
+    /^9\d{8,10}$/,         ///// 9 11 1234-5678
+    /^\d{6,10}$/           ///// 11 1234-5678
   ];
   
   return patterns.some(pattern => pattern.test(cleanedPhone));
 };
 
-// Formateo seguro de teléfono
+///// Formateo seguro de teléfono
 export const formatPhoneInput = (value) => {
   if (!value) return '';
   let cleaned = value.replace(/[^\d\+]/g, '');
@@ -278,7 +278,7 @@ export const formatPhoneInput = (value) => {
   return cleaned;
 };
 
-// Validación de nombre/apellido
+///// Validación de nombre/apellido
 export const validateName = (name) => {
   if (!name || typeof name !== 'string') return false;
   const cleaned = name.trim();
@@ -287,7 +287,7 @@ export const validateName = (name) => {
   return nameRegex.test(cleaned);
 };
 
-// Validación de dirección
+///// Validación de dirección
 export const validateAddress = (address) => {
   if (!address || typeof address !== 'string') return false;
   const cleaned = address.trim();
@@ -296,7 +296,7 @@ export const validateAddress = (address) => {
   return addressRegex.test(cleaned);
 };
 
-// Validación de ciudad
+///// Validación de ciudad
 export const validateCity = (city) => {
   if (!city || typeof city !== 'string') return false;
   const cleaned = city.trim();
@@ -305,7 +305,7 @@ export const validateCity = (city) => {
   return cityRegex.test(cleaned);
 };
 
-// Validación de código postal
+///// Validación de código postal
 export const validatePostalCode = (postalCode) => {
   if (!postalCode || typeof postalCode !== 'string') return false;
   const cleaned = postalCode.trim();
@@ -314,14 +314,14 @@ export const validatePostalCode = (postalCode) => {
   return postalRegex.test(cleaned);
 };
 
-// Validación de tarjeta de crédito
+///// Validación de tarjeta de crédito
 export const validateCreditCard = (cardNumber) => {
   if (!cardNumber || typeof cardNumber !== 'string') return false;
   const cleaned = cardNumber.replace(/\s/g, '');
   if (cleaned.length !== 16) return false;
   if (!/^\d+$/.test(cleaned)) return false;
   
-  // Algoritmo de Luhn
+  ///// Algoritmo de Luhn
   let sum = 0;
   let isEven = false;
   
@@ -340,7 +340,7 @@ export const validateCreditCard = (cardNumber) => {
   return sum % 10 === 0;
 };
 
-// Validación de fecha de expiración
+///// Validación de fecha de expiración
 export const validateExpirationDate = (date) => {
   if (!date || typeof date !== 'string') return false;
   const dateRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
@@ -360,33 +360,33 @@ export const validateExpirationDate = (date) => {
   return true;
 };
 
-// Validación de CVV
+///// Validación de CVV
 export const validateCVV = (cvv) => {
   if (!cvv || typeof cvv !== 'string') return false;
   if (cvv.length !== 3 && cvv.length !== 4) return false;
   return /^\d+$/.test(cvv);
 };
 
-// Sanitización de texto
+///// Sanitización de texto
 export const sanitizeText = (text) => {
   if (!text || typeof text !== 'string') return '';
   return text
-    .replace(/[<>]/g, '') // Remover tags HTML
-    .replace(/javascript:/gi, '') // Remover javascript:
-    .replace(/on\w+=/gi, '') // Remover event handlers
-    .substring(0, 500); // Limitar longitud
+    .replace(/[<>]/g, '') ///// Remover tags HTML
+    .replace(/javascript:/gi, '') ///// Remover javascript:
+    .replace(/on\w+=/gi, '') ///// Remover event handlers
+    .substring(0, 500); ///// Limitar longitud
 };
 
-// Manejar errores de API
+///// Manejar errores de API
 export const handleApiError = (error) => {
   console.error('API Error:', error)
   
   if (error.response) {
-    // El servidor respondió con un código de error
+    ///// El servidor respondió con un código de error
     const status = error.response.status
     let message = error.response.data?.message || 'Error del servidor'
     
-    // Mensajes personalizados por código de estado
+    ///// Mensajes personalizados por código de estado
     switch (status) {
       case 400:
         message = 'Solicitud incorrecta'
@@ -414,7 +414,7 @@ export const handleApiError = (error) => {
       isServerError: true
     }
   } else if (error.request) {
-    // La petición fue hecha pero no se recibió respuesta
+    ///// La petición fue hecha pero no se recibió respuesta
     return {
       status: 0,
       message: 'No se pudo conectar con el servidor. Verifica tu conexión a internet.',
@@ -422,7 +422,7 @@ export const handleApiError = (error) => {
       isNetworkError: true
     }
   } else {
-    // Algo pasó al preparar la petición
+    ///// Algo pasó al preparar la petición
     return {
       status: -1,
       message: error.message || 'Error desconocido',
@@ -432,7 +432,7 @@ export const handleApiError = (error) => {
   }
 }
 
-// Validar datos de producto antes de enviar
+///// Validar datos de producto antes de enviar
 export const validateProductData = (productData) => {
   const errors = []
   
@@ -458,7 +458,7 @@ export const validateProductData = (productData) => {
   }
 }
 
-// Cache para datos de API
+///// Cache para datos de API
 export const createCache = (defaultTTL = 5 * 60 * 1000) => {
   const cache = new Map()
 
@@ -495,7 +495,7 @@ export const createCache = (defaultTTL = 5 * 60 * 1000) => {
     
     getKeys: () => Array.from(cache.keys()),
     
-    // Limpiar elementos expirados
+    ///// Limpiar elementos expirados
     cleanup: () => {
       const now = Date.now()
       for (const [key, item] of cache.entries()) {
@@ -507,12 +507,12 @@ export const createCache = (defaultTTL = 5 * 60 * 1000) => {
   }
 }
 
-// Caches globales
-export const productCache = createCache(10 * 60 * 1000) // 10 minutos
-export const categoryCache = createCache(30 * 60 * 1000) // 30 minutos
-export const reviewCache = createCache(15 * 60 * 1000) // 15 minutos
+///// Caches globales
+export const productCache = createCache(10 * 60 * 1000) ///// 10 minutos
+export const categoryCache = createCache(30 * 60 * 1000) ///// 30 minutos
+export const reviewCache = createCache(15 * 60 * 1000) ///// 15 minutos
 
-// Helper para formatear precios
+///// Helper para formatear precios
 export const formatPrice = (price) => {
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',
@@ -520,7 +520,7 @@ export const formatPrice = (price) => {
   }).format(price)
 }
 
-// Helper para formatear fechas
+///// Helper para formatear fechas
 export const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString('es-AR', {
     year: 'numeric',
@@ -529,7 +529,7 @@ export const formatDate = (dateString) => {
   })
 }
 
-// Debounce para búsquedas
+///// Debounce para búsquedas
 export const debounce = (func, wait) => {
   let timeout
   return function executedFunction(...args) {
@@ -542,7 +542,7 @@ export const debounce = (func, wait) => {
   }
 }
 
-// Función para truncar texto
+///// Función para truncar texto
 export const truncateText = (text, maxLength = 100) => {
   if (!text || text.length <= maxLength) return text;
   return text.substring(0, maxLength) + '...';

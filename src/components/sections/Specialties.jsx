@@ -8,7 +8,7 @@ const Specialties = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visibleProducts, setVisibleProducts] = useState([])
 
-  // Mostrar 4 productos a la vez (carousel de 8 productos)
+  ///// Mostrar 4 productos a la vez (carousel de 8 productos)
   useEffect(() => {
     if (products.length > 0) {
       const start = currentIndex

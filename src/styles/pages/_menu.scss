@@ -230,7 +230,7 @@
   }
 }
 
-// Grid del menú
+///// Grid del menú
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -276,7 +276,7 @@
   animation: pulse 2s infinite;
 }
 
-// Estadísticas del menú
+///// Estadísticas del menú
 .menu-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -316,7 +316,7 @@
   }
 }
 
-// CTA del menú
+///// CTA del menú
 .menu-cta {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 123, 255, 0.1));
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -387,7 +387,7 @@
   }
 }
 
-// Paginación
+///// Paginación
 .pagination {
   display: flex;
   align-items: center;

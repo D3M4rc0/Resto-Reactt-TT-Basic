@@ -17,7 +17,7 @@ export const useAdmin = () => {
     carts: []
   });
 
-  // ========== CARGAR DATOS DEL DASHBOARD ==========
+  ///// ========== CARGAR DATOS DEL DASHBOARD ==========
   const loadDashboardData = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -45,9 +45,9 @@ export const useAdmin = () => {
     } finally {
       setLoading(false);
     }
-  }, []); // ← DEPENDENCIAS VACÍAS (IMPORTANTE)
+  }, []); ///// ← DEPENDENCIAS VACÍAS (IMPORTANTE)
 
-  // ========== CARGAR ENTIDAD ESPECÍFICA ==========
+  ///// ========== CARGAR ENTIDAD ESPECÍFICA ==========
   const loadEntity = useCallback(async (entityName, params = {}) => {
     setLoading(true);
     setError(null);
@@ -99,9 +99,9 @@ export const useAdmin = () => {
     } finally {
       setLoading(false);
     }
-  }, []); // ← DEPENDENCIAS VACÍAS
+  }, []); ///// ← DEPENDENCIAS VACÍAS
 
-  // ========== OPERACIONES CRUD ==========
+  ///// ========== OPERACIONES CRUD ==========
   const createItem = useCallback(async (entityName, data) => {
     setLoading(true);
     setError(null);
@@ -140,7 +140,7 @@ export const useAdmin = () => {
           throw new Error(`Operación no soportada para: ${entityName}`);
       }
 
-      // Actualizar la lista de entidades
+      ///// Actualizar la lista de entidades
       await loadEntity(`${entityName}s`);
 
       return response.data;
@@ -191,7 +191,7 @@ export const useAdmin = () => {
           throw new Error(`Operación no soportada para: ${entityName}`);
       }
 
-      // Actualizar la lista de entidades
+      ///// Actualizar la lista de entidades
       await loadEntity(`${entityName}s`);
 
       return response.data;
@@ -242,7 +242,7 @@ export const useAdmin = () => {
           throw new Error(`Operación no soportada para: ${entityName}`);
       }
 
-      // Actualizar la lista de entidades
+      ///// Actualizar la lista de entidades
       await loadEntity(`${entityName}s`);
 
       return response.data;
@@ -255,7 +255,7 @@ export const useAdmin = () => {
     }
   }, [loadEntity]);
 
-  // ========== BUSCAR ITEMS ==========
+  ///// ========== BUSCAR ITEMS ==========
   const searchItems = useCallback(async (entityName, query) => {
     setLoading(true);
     setError(null);
@@ -301,31 +301,31 @@ export const useAdmin = () => {
     }
   }, []);
 
-  // ========== CARGAR DATOS INICIALES ==========
+  ///// ========== CARGAR DATOS INICIALES ==========
   useEffect(() => {
     loadDashboardData();
-  }, [loadDashboardData]); // ← loadDashboardData es estable gracias a useCallback
+  }, [loadDashboardData]); ///// ← loadDashboardData es estable gracias a useCallback
 
   return {
-    // Estado
+    ///// Estado
     loading,
     error,
     stats,
     entities,
     
-    // Métodos de carga
+    ///// Métodos de carga
     loadDashboardData,
     loadEntity,
     
-    // CRUD
+    ///// CRUD
     createItem,
     updateItem,
     deleteItem,
     
-    // Búsqueda
+    ///// Búsqueda
     searchItems,
     
-    // Utilidades
+    ///// Utilidades
     refresh: loadDashboardData,
     clearError: () => setError(null)
   };

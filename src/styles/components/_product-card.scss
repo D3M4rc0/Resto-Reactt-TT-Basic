@@ -157,7 +157,7 @@
     font-weight: 700;
   }
 
-  // Leyenda de precios añadida aquí
+  ///// Leyenda de precios añadida aquí
   &__currency-note {
     font-size: 0.65rem;
     color: $text-muted;
@@ -173,7 +173,7 @@
   }
 }
 
-// Modal de producto
+///// Modal de producto
 .product-modal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -281,7 +281,7 @@
     gap: 0.5rem;
   }
 
-  // Leyenda de precios en el modal
+  ///// Leyenda de precios en el modal
   &__currency-note {
     font-size: 0.8rem;
     color: $text-muted;
@@ -344,7 +344,7 @@
   }
 }
 
-// Grid de productos
+///// Grid de productos
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

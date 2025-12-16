@@ -6,8 +6,8 @@ const AdminTable = ({
   onEdit = null,
   onDelete = null,
   onView = null,
-  searchable = false, // CAMBIADO: Por defecto FALSE para evitar duplicación
-  pagination = false, // CAMBIADO: Por defecto FALSE (la hacemos en AdminProducts)
+  searchable = false, ///// CAMBIADO: Por defecto FALSE para evitar duplicación
+  pagination = false, ///// CAMBIADO: Por defecto FALSE (la hacemos en AdminProducts)
   itemsPerPage = 10,
   title = '',
   emptyMessage = 'No hay datos disponibles',
@@ -16,7 +16,7 @@ const AdminTable = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
-  // Filtrado de datos SOLO si searchable=true
+  ///// Filtrado de datos SOLO si searchable=true
   const filteredData = useMemo(() => {
     if (!searchable || !searchTerm) return data;
     
@@ -28,7 +28,7 @@ const AdminTable = ({
     );
   }, [data, searchTerm, columns, searchable]);
 
-  // Ordenamiento
+  ///// Ordenamiento
   const sortedData = useMemo(() => {
     if (!sortConfig.key) return filteredData;
     
@@ -42,7 +42,7 @@ const AdminTable = ({
     });
   }, [filteredData, sortConfig]);
 
-  // Paginación SOLO si pagination=true
+  ///// Paginación SOLO si pagination=true
   const paginatedData = useMemo(() => {
     if (!pagination) return sortedData;
     

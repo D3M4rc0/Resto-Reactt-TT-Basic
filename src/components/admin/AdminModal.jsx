@@ -101,7 +101,7 @@ const AdminModal = ({
   );
 };
 
-// Modal para confirmar eliminación
+///// Modal para confirmar eliminación
 export const ConfirmModal = ({
   isOpen,
   onClose,
@@ -110,7 +110,7 @@ export const ConfirmModal = ({
   message = 'Esta acción no se puede deshacer.',
   confirmText = 'Eliminar',
   cancelText = 'Cancelar',
-  type = 'delete', // delete, warning, info, success
+  type = 'delete', ///// delete, warning, info, success
   isLoading = false
 }) => {
   const typeStyles = {
@@ -177,7 +177,7 @@ export const ConfirmModal = ({
   );
 };
 
-// Modal para formularios
+///// Modal para formularios
 export const FormModal = ({
   isOpen,
   onClose,
@@ -240,7 +240,7 @@ export const FormModal = ({
   );
 };
 
-// Modal para vista previa/detalles
+///// Modal para vista previa/detalles
 export const DetailModal = ({
   isOpen,
   onClose,

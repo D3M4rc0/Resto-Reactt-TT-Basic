@@ -11,7 +11,7 @@ import ScrollToTop from './components/ui/ScrollToTop'
 import ChatBot from './components/ui/ChatBot'
 import { NotificationContainer } from './components/ui/Notification'
 
-// 🆕 Importa TODAS las páginas admin
+///// 🆕 Importa TODAS las páginas admin
 import AdminProducts from './pages/AdminProducts'
 import AdminUsers from './pages/AdminUsers'
 import AdminCategories from './pages/AdminCategories'
@@ -22,7 +22,7 @@ import AdminSettings from './pages/AdminSettings'
 
 import './styles/index.scss'
 
-// 🆕 Componente para rutas protegidas de admin
+///// 🆕 Componente para rutas protegidas de admin
 import AdminRoute from './components/admin/AdminRoute'
 
 function App() {

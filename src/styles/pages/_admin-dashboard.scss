@@ -1,6 +1,6 @@
-// Variables específicas para admin - TEMA OSCURO
+///// Variables específicas para admin - TEMA OSCURO
 :root {
-  // Colores del dashboard - Versión oscura
+  ///// Colores del dashboard - Versión oscura
   --accent-gold: #D4AF37;
   --color-blue: #F97316;
   --color-blue-light: #1e3a8a;
@@ -21,7 +21,7 @@
   --color-indigo: #818cf8;
   --color-indigo-light: #312e81;
   
-  // Colores base para tema oscuro
+  ///// Colores base para tema oscuro
   --bg-primary: #1A1A1A;
   --bg-secondary: #2C2C2C;
   --bg-tertiary: #334155;
@@ -31,7 +31,7 @@
   --border-color: #475569;
   --border-light: #334155;
   
-  // Layout del admin
+  ///// Layout del admin
   --sidebar-width: 280px;
   --header-height: 80px;
   --footer-height: 60px;
@@ -42,7 +42,7 @@
   --transition: all 0.3s ease;
 }
 
-// ========== ACCESO DENEGADO ==========
+///// ========== ACCESO DENEGADO ==========
 .admin-access-denied {
   min-height: 100vh;
   display: flex;
@@ -90,7 +90,7 @@
   }
 }
 
-// ========== LAYOUT PRINCIPAL ==========
+///// ========== LAYOUT PRINCIPAL ==========
 .admin-dashboard {
   display: flex;
   min-height: 100vh;
@@ -113,7 +113,7 @@
   overflow-y: auto;
   
   .sidebar-header {
-    padding: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--border-color);
     
     .admin-brand {
@@ -197,7 +197,7 @@
   
   .sidebar-nav {
     flex: 1;
-    padding: 1.5rem;
+    padding: 1rem;
     
     .nav-section {
       margin-bottom: 2rem;
@@ -350,7 +350,7 @@
   }
 }
 
-// ========== CAMBIO CRÍTICO: CONTENIDO PRINCIPAL ==========
+///// ========== CONTENIDO PRINCIPAL ==========
 .admin-main-content {
   flex: 1;
   margin-left: var(--sidebar-width);
@@ -363,7 +363,7 @@
   box-sizing: border-box;
 }
 
-// ========== HEADER ==========
+///// ========== HEADER ==========
 .admin-header {
   height: var(--header-height);
   background: var(--bg-secondary);
@@ -398,6 +398,27 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+	  
+	  .btn-export {
+		background: var(--color-blue);
+		color: var(--text-primary);
+		border: none;
+		padding: 0.5rem 1rem;
+		border-radius: 8px;
+		font-weight: 500;
+		cursor: pointer;
+		transition: var(--transition);
+		font-size: 0.875rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		
+		&:hover {
+		  background: #2563eb;
+		  transform: translateY(-1px);
+		}
+	  }
+		  
       
       .btn-refresh {
         background: var(--color-blue);
@@ -446,7 +467,7 @@
   }
 }
 
-// ========== TABS ==========
+///// ========== TABS ==========
 .admin-tabs {
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
@@ -476,7 +497,7 @@
   }
 }
 
-// ========== CONTENIDO PRINCIPAL ==========
+///// ========== CONTENIDO PRINCIPAL ==========
 .admin-content {
   flex: 1;
   padding: 1.5rem;
@@ -539,7 +560,7 @@
   }
 }
 
-// ========== DASHBOARD CARDS ==========
+///// ========== DASHBOARD CARDS ==========
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -718,7 +739,7 @@
   }
 }
 
-// ========== SECCIONES ESPECÍFICAS ==========
+///// ========== SECCIONES ESPECÍFICAS ==========
 .recent-activity-section {
   background: var(--bg-secondary);
   border-radius: var(--border-radius);
@@ -1016,7 +1037,7 @@
   }
 }
 
-// ========== FOOTER ==========
+///// ========== FOOTER ==========
 .admin-footer {
   height: var(--footer-height);
   background: var(--bg-secondary);
@@ -1057,7 +1078,7 @@
   }
 }
 
-// ========== RESPONSIVE ==========
+///// ========== RESPONSIVE ==========
 @media (max-width: 1400px) {
   .admin-header {
     padding: 0 1rem;
@@ -1138,7 +1159,7 @@
   }
 }
 
-// ========== UTILIDADES ==========
+///// ========== UTILIDADES ==========
 .welcome-section {
   text-align: center;
   padding: 4rem 2rem;
@@ -1196,7 +1217,7 @@
   }
 }
 
-// Botón para mostrar/ocultar sidebar en móvil
+///// Botón para mostrar/ocultar sidebar en móvil
 .mobile-menu-toggle {
   display: none;
   position: fixed;
@@ -1216,5 +1237,174 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+//OVERLAY MOD
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+///// Botones del formulario
+.btn-cancel {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--color-blue-light);
+    color: var(--text-primary);
+  }
+}
+
+.btn-submit {
+  background: var(--color-orange);
+  color: var(--text-primary);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+  }
+}
+
+///// Botón cerrar del modal
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: var(--color-red);
+    background: var(--bg-tertiary);
+  }
+}
+
+///// Grid del formulario
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+///// Por defecto todos los campos ocupan 1 columna
+.form-group {
+  grid-column: span 1;
+}
+
+///// Solo nombre y descripción ocupan 2 columnas
+.form-group:nth-child(1),
+.form-group:nth-child(2) {
+  grid-column: span 2;
+}
+
+///// La vista previa de imagen NO debe tener label visible
+.form-group:nth-child(10) label {
+  display: none;
+}
+
+///// Estilo para la vista previa DEBAJO de la URL
+.form-group:nth-child(10) { ///// imagen_preview
+  margin-top: -10px; ///// Para que quede pegado debajo de la URL
+  height: 160px; ///// Altura fija
+}
+
+.image-preview-container {
+  height: 100%;
+}
+
+.image-preview-wrapper {
+  border: 2px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--bg-tertiary);
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: var(--color-orange);
+    background: var(--bg-secondary);
+  }
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 140px;
+  border-radius: 6px;
+}
+
+.image-preview-placeholder {
+  text-align: center;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  .placeholder-icon {
+    font-size: 32px;
+    opacity: 0.5;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
+}
+
+///// Checkbox
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+///// Responsive
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-group {
+    grid-column: span 1 !important;
   }
 }

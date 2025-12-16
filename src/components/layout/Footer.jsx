@@ -13,7 +13,7 @@ const Footer = () => {
     const timer = setInterval(() => {
       setCurrentTime(new Date())
       checkRestaurantStatus()
-    }, 60000) // Actualizar cada minuto
+    }, 60000) ///// Actualizar cada minuto
 
     checkRestaurantStatus()
     
@@ -23,12 +23,12 @@ const Footer = () => {
   const checkRestaurantStatus = () => {
     const now = currentTime
     const hour = now.getHours()
-    const day = now.getDay() // 0 = Domingo, 1 = Lunes, etc.
+    const day = now.getDay() ///// 0 = Domingo, 1 = Lunes, etc.
     
-    // Horario: Lunes a Sábado 12:00-15:00 y 19:00-23:00
+    ///// Horario: Lunes a Sábado 12:00-15:00 y 19:00-23:00
     const isLunchTime = hour >= 12 && hour < 15
     const isDinnerTime = hour >= 19 && hour < 23
-    const isWeekend = day === 0 // Domingo cerrado
+    const isWeekend = day === 0 ///// Domingo cerrado
     
     setIsOpen(!isWeekend && (isLunchTime || isDinnerTime))
   }

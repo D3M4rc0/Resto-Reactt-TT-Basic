@@ -63,14 +63,14 @@ const AdminSidebar = () => {
                     `nav-link ${isActive ? 'active' : ''}`
                   }
 					style={({ isActive }) => {
-					  // Usar la variable CSS del tema oscuro que YA tienes
+					  ///// Usar la variable CSS del tema oscuro que YA tienes
 					  const colorVar = `--color-${item.color}`;
 					  const colorLightVar = `--color-${item.color}-light`;
 					  
 					  return {
 						backgroundColor: isActive ? `var(${colorLightVar})` : 'transparent',
 						borderLeftColor: isActive ? `var(${colorVar})` : 'transparent',
-						// Asegurar que la variable se establezca
+						///// Asegurar que la variable se establezca
 						[colorVar]: isActive ? `var(${colorVar})` : undefined
 					  };
 					}}

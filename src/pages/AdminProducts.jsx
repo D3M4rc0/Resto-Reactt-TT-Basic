@@ -1,9 +1,12 @@
+///// D:\Proyect-React_Pre\Ecomm-Basic-React-pre\resto-ecommerce-v2-react-final\src\pages\AdminProducts.jsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useAdmin } from '../hooks/useAdmin';
 import AdminSidebar from '../components/admin/AdminSidebar';
 import AdminTable from '../components/admin/AdminTable';
 import AdminModal from '../components/admin/AdminModal';
+import { FormModal } from '../components/admin/AdminModal';
+import AdminForm from '../components/admin/AdminForm';
 import '../styles/pages/_admin-dashboard.scss';
 import '../styles/pages/_admin-products.scss';
 
@@ -21,14 +24,15 @@ const AdminProducts = () => {
   
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  console.log('✅ showModal en AdminProducts:', showModal);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Verificar si es admin
+  ///// Verificar si es admin
   const isAdmin = user && user.rol === 'admin';
 
-  // Si no es admin, mostrar acceso denegado
+  ///// Si no es admin, mostrar acceso denegado
   if (!isAdmin) {
     return (
       <div className="admin-access-denied">
@@ -42,19 +46,19 @@ const AdminProducts = () => {
 
   const products = entities.products || [];
 
-  // Columnas para la tabla - SEPARADA IMAGEN
+  ///// Columnas para la tabla - SEPARADA IMAGEN
   const columns = [
     { 
       key: 'id', 
       label: 'ID', 
       sortable: true,
-	  width: '80px',
+      width: '80px',
       render: (value) => <span className="product-id">#{value}</span>
     },
     { 
       key: 'imagen_url', 
       label: 'Imagen',
-	  width: '80px',
+      width: '80px',
       render: (value) => (
         <div className="product-image-cell">
           {value ? (
@@ -77,7 +81,7 @@ const AdminProducts = () => {
       key: 'nombre', 
       label: 'Nombre', 
       sortable: true,
-	  width: '200px',
+      width: '200px',
       render: (value) => <span className="product-name">{value}</span>
     },
     { 
@@ -109,7 +113,7 @@ const AdminProducts = () => {
       key: 'categoria', 
       label: 'Categoría', 
       sortable: true,
-	  width: '120px',
+      width: '120px',
       render: (value) => <span className="category-tag">{value || 'Sin categoría'}</span>
     },
     { 
@@ -123,68 +127,95 @@ const AdminProducts = () => {
     }
   ];
 
-  // Campos del formulario
-  const formFields = [
-    {
-      name: 'nombre',
-      label: 'Nombre del Producto',
-      type: 'text',
-      required: true,
-      placeholder: 'Ej: Hamburguesa Clásica'
-    },
-    {
-      name: 'descripcion',
-      label: 'Descripción',
-      type: 'textarea',
-      placeholder: 'Describe el producto...'
-    },
-    {
-      name: 'precio',
-      label: 'Precio ($)',
-      type: 'number',
-      required: true,
-      min: 0,
-      step: 0.01
-    },
-    {
-      name: 'stock',
-      label: 'Stock disponible',
-      type: 'number',
-      min: 0
-    },
-    {
-      name: 'categoria',
-      label: 'Categoría',
-      type: 'text',
-      placeholder: 'Ej: Hamburguesas, Bebidas, Postres'
-    },
-    {
-      name: 'imagen',
-      label: 'URL de la Imagen',
-      type: 'text',
-      placeholder: 'https://ejemplo.com/imagen.jpg'
-    },
-    {
-      name: 'activo',
-      label: 'Producto activo',
-      type: 'checkbox',
-      defaultValue: true
-    }
-  ];
-
-  // Filtrar productos por búsqueda (desde el header)
+  ///// Campos del formulario - MODIFICADOS CON NUEVO CAMPO DE VISUALIZACIÓN
+///// Cambia el ORDEN de los campos así:
+	const formFields = [
+	  ///// Fila 1: Nombre (2 columnas)
+	  {
+		name: 'nombre',
+		label: 'Nombre del Producto',
+		type: 'text',
+		required: true,
+		placeholder: 'Ej: Hamburguesa Clásica'
+	  },
+	  ///// Fila 2: Descripción (2 columnas)
+	  {
+		name: 'descripcion',
+		label: 'Descripción',
+		type: 'textarea',
+		placeholder: 'Describe el producto...'
+	  },
+	  ///// Fila 3: Precio (izquierda) - Stock (derecha)
+	  {
+		name: 'precio',
+		label: 'Precio ($)',
+		type: 'number',
+		required: true,
+		min: 0,
+		step: 0.01
+	  },
+	  {
+		name: 'stock',
+		label: 'Stock disponible',
+		type: 'number',
+		min: 0,
+		defaultValue: 0
+	  },
+	  ///// Fila 4: Categoría (izquierda) - Marca (derecha)
+	  {
+		name: 'categoria',
+		label: 'Categoría',
+		type: 'text',
+		placeholder: 'Ej: Hamburguesas, Bebidas, Postres',
+		required: true
+	  },
+	  {
+		name: 'marca',
+		label: 'Marca (opcional)',
+		type: 'text',
+		placeholder: 'Ej: Monster, Coca-Cola, etc.'
+	  },
+	  ///// Fila 5: SKU (izquierda) - URL Imagen (derecha)
+	  {
+		name: 'sku',
+		label: 'SKU (opcional)',
+		type: 'text',
+		placeholder: 'Ej: SKU-12345, RES-67890'
+	  },
+	  {
+		name: 'imagen_url',
+		label: 'URL de la Imagen',
+		type: 'text',
+		placeholder: 'https://ejemplo.com/imagen.jpg'
+	  },
+	  ///// Fila 6: Activo (solo izquierda - ocupa 1 columna)
+	  {
+		name: 'activo',
+		label: 'Producto activo',
+		type: 'checkbox',
+		defaultValue: true
+	  },
+	  ///// Fila 7: Vista previa (ocupa 2 columnas completas)
+	  {
+		name: 'imagen_preview',
+		label: 'Vista Previa',
+		type: 'imagePreview',
+		sourceField: 'imagen_url'
+	  }
+	];
+  ///// Filtrar productos por búsqueda (desde el header)
   const filteredProducts = products.filter(product =>
     Object.values(product).some(value =>
       String(value).toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
 
-  // Paginación
+  ///// Paginación
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
 
-  // Handlers
+  ///// Handlers
   const handleCreate = () => {
     setSelectedProduct(null);
     setShowModal(true);
@@ -207,21 +238,39 @@ const AdminProducts = () => {
     }
   };
 
+  ///// FUNCIÓN handleSave CORREGIDA
   const handleSave = async (formData) => {
     try {
+      ///// FORMATO CORRECTO para FastAPI (JSON)
+      const formattedData = {
+        nombre: formData.nombre || '',
+        descripcion: formData.descripcion || '',
+        precio: parseFloat(formData.precio) || 0,
+        stock: parseInt(formData.stock) || 0,
+        categoria: formData.categoria || '',
+        marca: formData.marca || null,      ///// Opcional
+        sku: formData.sku || null,          ///// Opcional
+        imagen_url: formData.imagen_url || '',
+        activo: formData.activo !== undefined ? Boolean(formData.activo) : true
+      };
+
+      console.log('Enviando datos a API:', formattedData);
+
       if (selectedProduct) {
-        // Actualizar producto existente
-        await updateItem('product', selectedProduct.id, formData);
+        ///// Actualizar producto existente
+        await updateItem('product', selectedProduct.id, formattedData);
         alert('✅ Producto actualizado correctamente');
       } else {
-        // Crear nuevo producto
-        await createItem('product', formData);
+        ///// Crear nuevo producto
+        await createItem('product', formattedData);
         alert('✅ Producto creado correctamente');
       }
+      
       setShowModal(false);
       refresh();
     } catch (err) {
-      alert('❌ Error al guardar el producto: ' + err.message);
+      console.error('Error detallado al guardar:', err);
+      alert('❌ Error al guardar el producto: ' + (err.message || 'Error desconocido. Ver consola.'));
     }
   };
 
@@ -230,10 +279,10 @@ const AdminProducts = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Función para exportar productos a CSV
+  ///// Función para exportar productos a CSV
   const handleExportCSV = () => {
     const csvContent = [
-      ['ID', 'Nombre', 'Descripción', 'Precio', 'Stock', 'Categoría', 'Estado'],
+      ['ID', 'Nombre', 'Descripción', 'Preciso', 'Stock', 'Categoría', 'Marca', 'SKU', 'Estado'],
       ...filteredProducts.map(p => [
         p.id,
         `"${p.nombre}"`,
@@ -241,6 +290,8 @@ const AdminProducts = () => {
         p.precio,
         p.stock,
         p.categoria,
+        p.marca || '',
+        p.sku || '',
         p.activo ? 'Activo' : 'Inactivo'
       ])
     ].map(row => row.join(',')).join('\n');
@@ -360,8 +411,8 @@ const AdminProducts = () => {
                     columns={columns}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
-                    searchable={false} // IMPORTANTE: FALSE para evitar duplicación
-                    pagination={false} // La paginación la manejamos fuera
+                    searchable={false} ///// IMPORTANTE: FALSE para evitar duplicación
+                    pagination={false} ///// La paginación la manejamos fuera
                   />
                 </div>
               </div>
@@ -385,7 +436,7 @@ const AdminProducts = () => {
                     <div className="page-numbers">
                       {[...Array(totalPages)].map((_, index) => {
                         const pageNumber = index + 1;
-                        // Mostrar solo páginas cercanas
+                        ///// Mostrar solo páginas cercanas
                         if (
                           pageNumber === 1 || 
                           pageNumber === totalPages || 
@@ -422,7 +473,7 @@ const AdminProducts = () => {
                       value={itemsPerPage}
                       onChange={(e) => {
                         const newItemsPerPage = Number(e.target.value);
-                        // Mantener la posición relativa
+                        ///// Mantener la posición relativa
                         const newStartIndex = Math.floor(startIndex / itemsPerPage * newItemsPerPage);
                         const newPage = Math.floor(newStartIndex / newItemsPerPage) + 1;
                         setCurrentPage(newPage);
@@ -440,15 +491,33 @@ const AdminProducts = () => {
             </>
           )}
 
-          {showModal && (
-            <AdminModal
-              title={selectedProduct ? 'Editar Producto' : 'Crear Nuevo Producto'}
-              initialData={selectedProduct}
-              fields={formFields}
-              onSave={handleSave}
-              onClose={() => setShowModal(false)}
-            />
-          )}
+			{showModal && (
+			  <div className="admin-modal-overlay">
+				<div className="admin-modal">
+				  <div className="modal-header">
+					<h2>{selectedProduct ? 'Editar Producto' : 'Crear Nuevo Producto'}</h2>
+					<button onClick={() => setShowModal(false)} className="modal-close-btn">
+					  ✕
+					</button>
+				  </div>
+				  <div className="modal-content">
+					<AdminForm
+					  fields={formFields}
+					  initialData={selectedProduct || {}}
+					  onSubmit={(formData) => {
+						console.log('📦 Datos:', formData);
+						handleSave(formData);
+						setShowModal(false);
+					  }}
+					  onCancel={() => setShowModal(false)}
+					  submitLabel={selectedProduct ? 'Actualizar' : 'Crear'}
+					  cancelLabel="Cancelar"
+					  loading={loading}
+					/>
+				  </div>
+				</div>
+			  </div>
+			)}
         </div>
       </main>
     </div>

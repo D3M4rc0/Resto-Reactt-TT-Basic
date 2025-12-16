@@ -27,7 +27,7 @@ const Navbar = () => {
     const term = searchTerm.toLowerCase();
     const results = searchIndex.filter(item => 
       item.name.toLowerCase().includes(term)
-    ).slice(0, 8); // Mostrar máximo 8 sugerencias
+    ).slice(0, 8); ///// Mostrar máximo 8 sugerencias
 
     setSuggestions(results);
   }, [searchTerm, searchIndex, loading]);
@@ -36,7 +36,7 @@ const Navbar = () => {
   const performSmartSearch = (term) => {
     const lowerTerm = term.toLowerCase();
     
-    // Buscar coincidencia exacta primero
+    ///// Buscar coincidencia exacta primero
     const exactMatch = searchIndex.find(item => 
       item.name.toLowerCase() === lowerTerm
     );
@@ -44,7 +44,7 @@ const Navbar = () => {
     if (exactMatch) {
       navigate(exactMatch.action);
     } else {
-      // Si no hay coincidencia exacta, buscar parcial
+      ///// Si no hay coincidencia exacta, buscar parcial
       const partialMatch = searchIndex.find(item => 
         item.name.toLowerCase().includes(lowerTerm)
       );
@@ -52,7 +52,7 @@ const Navbar = () => {
       if (partialMatch) {
         navigate(partialMatch.action);
       } else {
-        // Búsqueda general
+        ///// Búsqueda general
         navigate(`/menu?search=${encodeURIComponent(term)}`);
       }
     }
@@ -246,7 +246,7 @@ const Navbar = () => {
                         key={`${item.type}-${item.id || index}`}
                         className={`suggestion-item suggestion-item--${item.type}`}
                         onClick={() => handleSuggestionClick(item)}
-                        onMouseDown={(e) => e.preventDefault()} // Evitar blur del input
+                        onMouseDown={(e) => e.preventDefault()} ///// Evitar blur del input
                       >
                         <span className={`suggestion-icon suggestion-icon--${item.type}`}>
                           {item.type === 'product' && '🍽️'}

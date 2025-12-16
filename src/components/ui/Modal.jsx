@@ -28,7 +28,7 @@ const Modal = ({ isOpen, onClose, title, children, className = '', size = 'mediu
     }
   }
 
-  // ===== AQUÍ ESTÁ EL CAMBIO CRÍTICO: Usar createPortal =====
+  ///// ===== AQUÍ ESTÁ EL CAMBIO CRÍTICO: Usar createPortal =====
   return ReactDOM.createPortal(
     <div className="modal-overlay" onClick={handleBackdropClick}>
       <div className={`modal modal--${size} ${className}`}>
@@ -41,7 +41,7 @@ const Modal = ({ isOpen, onClose, title, children, className = '', size = 'mediu
         </div>
       </div>
     </div>,
-    document.body // Renderiza directamente en el body
+    document.body ///// Renderiza directamente en el body
   )
 }
 

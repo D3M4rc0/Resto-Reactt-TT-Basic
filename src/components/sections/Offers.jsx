@@ -10,10 +10,10 @@ const Offers = () => {
   const [offers, setOffers] = useState([])
   const [visibleOffers, setVisibleOffers] = useState([])
 
-  // Filtrar productos en oferta y asignar descuentos aleatorios
+  ///// Filtrar productos en oferta y asignar descuentos aleatorios
   useEffect(() => {
     if (products.length > 0) {
-      // Función para generar descuento aleatorio entre 5% y 30%
+      ///// Función para generar descuento aleatorio entre 5% y 30%
       const generateRandomDiscount = (productId) => {
         const seed = productId || 1;
         const random = (Math.sin(seed * 100) + 1) / 2;
@@ -34,8 +34,8 @@ const Offers = () => {
             discountPrice: discountPrice,
             discountPercentage: discountPercentage,
             onSale: true,
-            saleDiscount: discountPercentage,  // Para que ProductCard lo use
-            calculatedDiscountPrice: discountPrice // Para que ProductCard lo use
+            saleDiscount: discountPercentage,  ///// Para que ProductCard lo use
+            calculatedDiscountPrice: discountPrice ///// Para que ProductCard lo use
           }
         })
         .slice(0, 8)
@@ -44,7 +44,7 @@ const Offers = () => {
     }
   }, [products])
 
-  // Mostrar 4 ofertas a la vez
+  ///// Mostrar 4 ofertas a la vez
   useEffect(() => {
     if (offers.length > 0) {
       const start = currentIndex

@@ -1,18 +1,18 @@
-// src/styles/pages/_admin-products.scss
+///// src/styles/pages/_admin-products.scss
 @import '../utils/variables';
 
-// ========== HEADER DEL CRUD ==========
+///// ========== HEADER DEL CRUD ==========
 .crud-header {
   background: var(--bg-secondary);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
   border: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -21,7 +21,7 @@
   
   .stats-summary {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     
     @media (max-width: 768px) {
@@ -32,20 +32,20 @@
     
     .stat-item {
       text-align: center;
-      min-width: 120px;
+      min-width: 90px;
       
       .stat-label {
         display: block;
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         color: var(--text-secondary);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
       
       .stat-value {
         display: block;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: var(--text-primary);
         
@@ -66,7 +66,7 @@
   
   .crud-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     align-items: center;
     
     @media (max-width: 768px) {
@@ -80,14 +80,14 @@
       position: relative;
       
       .search-input {
-        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        padding: 0.5rem 1rem 0.5rem 2.25rem;
         border: 2px solid var(--border-color);
         border-radius: 8px;
         background: var(--bg-tertiary);
         color: var(--text-primary);
-        width: 300px;
+        width: 280px;
         transition: var(--transition);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         
         &:focus {
           outline: none;
@@ -100,20 +100,20 @@
         }
       }
       
-      // Icono de búsqueda dentro del input
+      ///// Icono de búsqueda dentro del input
       &::before {
         content: '🔍';
         position: absolute;
-        left: 0.75rem;
+        left: 0.625rem;
         top: 50%;
         transform: translateY(-50%);
         color: var(--text-secondary);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         z-index: 1;
       }
       
       .btn-search {
-        display: none; // Ocultar porque ya tenemos el icono dentro
+        display: none;
       }
       
       .btn-clear-search {
@@ -124,13 +124,13 @@
         background: var(--color-red-light);
         color: var(--color-red);
         border: none;
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.75rem;
+        font-size: 0.6875rem;
         cursor: pointer;
         transition: var(--transition);
         
@@ -145,7 +145,7 @@
       background: linear-gradient(135deg, var(--color-orange), #ea580c);
       color: var(--text-primary);
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
@@ -154,9 +154,10 @@
       align-items: center;
       gap: 0.5rem;
       white-space: nowrap;
+      font-size: 0.875rem;
       
       span {
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 700;
       }
       
@@ -166,37 +167,23 @@
       }
     }
     
-    .btn-export {
-      background: var(--color-blue);
-      color: var(--text-primary);
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      
-      &:hover {
-        background: #2563eb;
-        transform: translateY(-2px);
-      }
-    }
   }
 }
 
-// ========== TABLA DE PRODUCTOS CON LÍNEAS NARANJAS ==========
+///// ========== TABLA DE PRODUCTOS CON LÍNEAS NARANJAS ==========
 .product-table-container {
   background: var(--bg-secondary);
   border-radius: var(--border-radius);
   overflow: hidden;
   border: 2px solid var(--color-orange);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   
   .table-scroll-container {
     overflow-x: auto;
+    padding: 0.5rem 0;
     
-    // Líneas decorativas laterales
+    ///// Líneas decorativas laterales
     &::before, &::after {
       content: '';
       position: absolute;
@@ -218,20 +205,20 @@
 .admin-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1000px;
+  min-width: 950px;
   
-  // Encabezado de la tabla
+  ///// Encabezado de la tabla
   thead {
     background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
     border-bottom: 3px solid var(--color-orange);
     
     tr {
       th {
-        padding: 1.25rem 1rem;
+        padding: 0.75rem 0.5rem;
         text-align: left;
         color: var(--color-orange);
         font-weight: 700;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         border-right: 1px solid var(--border-color);
@@ -243,7 +230,7 @@
         &.sortable {
           cursor: pointer;
           position: relative;
-          padding-right: 2rem;
+          padding-right: 1.25rem;
           transition: all 0.2s ease;
           
           &:hover {
@@ -252,27 +239,28 @@
           
           .sort-indicator {
             position: absolute;
-            right: 0.75rem;
+            right: 0.5rem;
             color: var(--color-orange);
             opacity: 0.5;
+            font-size: 0.75rem;
           }
         }
         
         &.actions-column {
           text-align: center;
-          width: 150px;
+          width: 130px;
         }
       }
     }
   }
   
-  // Cuerpo de la tabla
+  ///// Cuerpo de la tabla
   tbody {
     tr {
       border-bottom: 1px solid rgba(251, 146, 60, 0.2);
       transition: all 0.3s ease;
       
-      // Filas alternas
+      ///// Filas alternas
       &.odd-row {
         background: var(--bg-tertiary);
       }
@@ -288,48 +276,52 @@
         td {
           color: var(--text-primary);
           
-          // Línea vertical naranja al inicio de la fila en hover
+          ///// Línea vertical naranja al inicio de la fila en hover
           &:first-child {
             border-left: 3px solid var(--color-orange);
           }
         }
       }
       
-      // Última fila con línea más gruesa
+      ///// Última fila con línea más gruesa
       &:last-child {
         border-bottom: 2px solid var(--color-orange);
       }
       
       td {
-        padding: 1rem;
+        padding: 0.75rem 0.5rem;
         color: var(--text-secondary);
         border-right: 1px solid rgba(251, 146, 60, 0.1);
+        font-size: 0.875rem;
         
         &:last-child {
           border-right: none;
+          padding: 0.5rem;
         }
         
-        // Primera columna (ID) con estilo especial
+        ///// Primera columna (ID) con estilo especial
         &:first-child {
           font-weight: 700;
           color: var(--text-primary);
           background: rgba(251, 146, 60, 0.05);
+          font-size: 0.8125rem;
+          padding: 0.75rem 0.375rem;
         }
       }
     }
   }
 }
 
-// ========== CELDAS ESPECIALES ==========
+///// ========== CELDAS ESPECIALES ==========
 .product-image-cell {
   display: flex;
   align-items: center;
   justify-content: center;
   
   .product-table-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
     object-fit: cover;
     border: 2px solid var(--color-orange);
     transition: all 0.3s ease;
@@ -341,15 +333,15 @@
   }
   
   .no-image-placeholder {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
     background: rgba(251, 146, 60, 0.1);
     border: 2px dashed var(--color-orange);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--color-orange);
   }
 }
@@ -358,8 +350,9 @@
   font-weight: 700;
   color: var(--text-primary);
   background: rgba(251, 146, 60, 0.05);
-  padding: 0.25rem 0.5rem;
+  padding: 0.125rem 0.375rem;
   border-radius: 4px;
+  font-size: 0.75rem;
 }
 
 .product-name {
@@ -370,32 +363,34 @@
 .price {
   font-weight: 700;
   color: var(--accent-gold);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .truncate-text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   line-height: 1.4;
-  max-height: 2.8em;
+  max-height: 1.4em;
 }
 
-// ========== BADGES ==========
+///// ========== BADGES ==========
 .stock-badge,
 .status-badge,
 .category-tag {
   display: inline-block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: 1px solid transparent;
   transition: all 0.3s ease;
+  min-width: 45px;
+  text-align: center;
   
   &:hover {
     transform: translateY(-2px);
@@ -443,25 +438,25 @@
   border-color: var(--color-purple);
 }
 
-// ========== BOTONES DE ACCIÓN ==========
+///// ========== BOTONES DE ACCIÓN ==========
 .action-buttons {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.375rem;
   justify-content: center;
   
   .action-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 0.875rem;
     
-    // Botón VER (ojo)
+    ///// Botón VER (ojo)
     &.view-btn {
       background: rgba(59, 130, 246, 0.1);
       color: var(--color-blue);
@@ -475,7 +470,7 @@
       }
     }
     
-    // Botón EDITAR (lápiz)
+    ///// Botón EDITAR (lápiz)
     &.edit-btn {
       background: rgba(251, 146, 60, 0.1);
       color: var(--color-orange);
@@ -489,7 +484,7 @@
       }
     }
     
-    // Botón ELIMINAR (basura)
+    ///// Botón ELIMINAR (basura)
     &.delete-btn {
       background: rgba(239, 68, 68, 0.1);
       color: var(--color-red);
@@ -505,11 +500,11 @@
   }
 }
 
-// ========== PAGINACIÓN ==========
+///// ========== PAGINACIÓN ==========
 .pagination-container {
   background: var(--bg-secondary);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
+  padding: 1rem;
   border: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
@@ -524,23 +519,24 @@
   
   .pagination-info {
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     flex: 1;
     
     .search-info {
       color: var(--color-orange);
       font-weight: 500;
-      margin-left: 1rem;
+      margin-left: 0.75rem;
       background: rgba(251, 146, 60, 0.1);
-      padding: 0.25rem 0.75rem;
+      padding: 0.125rem 0.5rem;
       border-radius: 4px;
+      font-size: 0.75rem;
     }
   }
   
   .pagination-controls {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
     
     @media (max-width: 768px) {
       flex-wrap: wrap;
@@ -551,11 +547,11 @@
       background: var(--bg-tertiary);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
+      padding: 0.375rem 0.75rem;
+      border-radius: 6px;
       cursor: pointer;
       transition: var(--transition);
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 500;
       
       &:hover:not(:disabled) {
@@ -575,8 +571,8 @@
       gap: 0.25rem;
       
       .page-btn {
-        min-width: 36px;
-        height: 36px;
+        min-width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -586,7 +582,7 @@
         border-radius: 6px;
         cursor: pointer;
         transition: var(--transition);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         
         &:hover {
           background: var(--color-orange);
@@ -611,12 +607,12 @@
     }
     
     .items-per-page {
-      padding: 0.5rem;
+      padding: 0.375rem;
       border: 1px solid var(--border-color);
       border-radius: 6px;
       background: var(--bg-tertiary);
       color: var(--text-primary);
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       cursor: pointer;
       
       &:focus {
@@ -627,13 +623,13 @@
   }
 }
 
-// ========== ESTADO VACÍO ==========
+///// ========== ESTADO VACÍO ==========
 .empty-state {
   text-align: center;
-  padding: 3rem;
+  padding: 2rem;
   
   .empty-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--text-muted);
     margin-bottom: 1rem;
     opacity: 0.5;
@@ -641,19 +637,20 @@
   
   .empty-message {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
   }
   
   .clear-search-btn {
     background: var(--color-orange);
     color: var(--text-primary);
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.375rem 0.75rem;
     border-radius: 6px;
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
+    font-size: 0.8125rem;
     
     &:hover {
       background: #ea580c;
@@ -661,19 +658,19 @@
   }
 }
 
-// ========== LOADING ==========
+///// ========== LOADING ==========
 .admin-table-loading,
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  padding: 2rem;
   gap: 1rem;
   
   .loading-spinner {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: 3px solid var(--border-color);
     border-top-color: var(--color-orange);
     border-radius: 50%;
@@ -690,27 +687,29 @@
   to { transform: rotate(360deg); }
 }
 
-// ========== ERROR ALERT ==========
+///// ========== ERROR ALERT ==========
 .error-alert {
   background: linear-gradient(135deg, var(--color-red-light), #7f1d1d);
   border: 1px solid var(--color-red);
   color: var(--color-red);
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--border-radius);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.875rem;
   
   button {
     background: var(--color-red);
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.375rem 0.75rem;
     border-radius: 6px;
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
+    font-size: 0.8125rem;
     
     &:hover {
       background: #dc2626;
@@ -718,17 +717,170 @@
   }
 }
 
-// ========== RESPONSIVE ==========
+///// ========== RESPONSIVE ==========
+@media (max-width: 1200px) {
+  .admin-table {
+    min-width: 900px;
+  }
+  
+  .crud-actions {
+    .search-box .search-input {
+      width: 250px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-table {
+    min-width: 880px;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-table {
-    min-width: 800px;
+    min-width: 850px;
   }
   
   .product-table-container {
     border-radius: 0;
     border-left: none;
     border-right: none;
-    margin: 0 -1rem;
-    width: calc(100% + 2rem);
+    margin: 0 -0.75rem;
+    width: calc(100% + 1.5rem);
+  }
+}
+
+///// ========== MODALES CrUD ==========
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.admin-modal {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 2px solid var(--color-orange);
+  box-shadow: var(--shadow-lg);
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    h2 {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+    }
+    
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 4px;
+      
+      &:hover {
+        color: var(--color-red);
+        background: var(--bg-tertiary);
+      }
+    }
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+}
+
+///// Formulario
+///// ========== FORMULARIO DE 2 COLUMNAS ==========
+.admin-form {
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    
+    ///// Campos que ocupan 2 columnas
+    .form-group:nth-child(1),  ///// Nombre
+    .form-group:nth-child(2),  ///// Descripción
+    .form-group:nth-child(9) { ///// Checkbox (activo)
+      grid-column: span 2;
+    }
+    
+    ///// Ajustar altura de inputs
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-orange);
+        box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
+      }
+      
+      &.error {
+        border-color: var(--color-red);
+      }
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+  }
+  
+  .form-actions {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 1.5rem;
+  }
+}
+
+///// Asegurar que el modal sea más ancho
+.admin-modal {
+  .modal-content {
+    padding: 2rem;
+    
+    .admin-form {
+      width: 100%;
+      max-width: none;
+    }
   }
 }

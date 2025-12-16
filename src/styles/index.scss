@@ -3,7 +3,7 @@
 @import './utils/animations';
 @import './pages/admin-dashboard';
 
-// Reset y base
+///// Reset y base
 * {
   margin: 0;
   padding: 0;
@@ -18,10 +18,10 @@ body {
   overflow-x: hidden;
 }
 
-// Importaciones de componentes
+///// Importaciones de componentes
 @import './components/header';
 @import './components/navbar';
-@import './components/footer'; // ✅ NUEVO
+@import './components/footer'; ///// ✅ NUEVO
 @import './components/product-card';
 @import './components/cart';
 @import './components/modal';
@@ -30,14 +30,14 @@ body {
 @import './components/notification'; 
 @import 'components/contact';
 
-// Pages
+///// Pages
 @import './pages/home';
 @import './pages/menu';
 @import './pages/about';
 @import './pages/checkout';
 @import './pages/admin-products';
 
-// Utilidades
+///// Utilidades
 .container {
   max-width: 1200px;
   margin: 0 auto;

@@ -65,10 +65,10 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      // Simular envío del formulario
+      ///// Simular envío del formulario
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      // Aquí integraría con Formspree o tu backend
+      ///// Aquí integraría con Formspree o tu backend
       console.log('Formulario enviado:', formData)
       
       setIsSubmitted(true)

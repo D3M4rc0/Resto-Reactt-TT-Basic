@@ -11,11 +11,11 @@ const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState('todos')
   const [searchQuery, setSearchQuery] = useState('')
   
-  // ✅ CORREGIR: OBTENER TODOS LOS PRODUCTOS SIN PAGINACIÓN PARA FILTRADO
-  const { products: allProducts, loading, error } = useProducts(1, 100) // Obtener muchos productos
+  ///// ✅ CORREGIR: OBTENER TODOS LOS PRODUCTOS SIN PAGINACIÓN PARA FILTRADO
+  const { products: allProducts, loading, error } = useProducts(1, 100) ///// Obtener muchos productos
   const { categories } = useCategories()
 
-  // ✅ FILTRAR SOLO CATEGORÍAS RELEVANTES - MÁS FLEXIBLE
+  ///// ✅ FILTRAR SOLO CATEGORÍAS RELEVANTES - MÁS FLEXIBLE
   const relevantCategories = categories.filter(cat => {
     const catName = cat.nombre?.toLowerCase() || '';
     return (
@@ -28,7 +28,7 @@ const Menu = () => {
     );
   });
 
-  // Sync URL params with state
+  ///// Sync URL params with state
   useEffect(() => {
     const page = parseInt(searchParams.get('page')) || 1
     const category = searchParams.get('category') || 'todos'
@@ -72,7 +72,7 @@ const Menu = () => {
     })
   }
 
-  // ✅ CORREGIR: FILTRAR TODOS LOS PRODUCTOS Y LUEGO PAGINAR
+  ///// ✅ CORREGIR: FILTRAR TODOS LOS PRODUCTOS Y LUEGO PAGINAR
   const filteredProducts = allProducts.filter(product => {
     const matchesCategory = selectedCategory === 'todos' || 
                            product.categoria?.toLowerCase() === selectedCategory.toLowerCase()
@@ -83,7 +83,7 @@ const Menu = () => {
     return matchesCategory && matchesSearch
   })
 
-  // ✅ PAGINACIÓN MANUAL SOBRE PRODUCTOS FILTRADOS
+  ///// ✅ PAGINACIÓN MANUAL SOBRE PRODUCTOS FILTRADOS
   const productsPerPage = 9;
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
@@ -142,7 +142,7 @@ const Menu = () => {
                 </button>
               ))
             ) : (
-              // ✅ FALLBACK POR SI NO HAY CATEGORÍAS DE LA API
+              ///// ✅ FALLBACK POR SI NO HAY CATEGORÍAS DE LA API
               <>
                 <button
                   className={`menu-page__category-btn ${selectedCategory === 'Comidas Saladas' ? 'menu-page__category-btn--active' : ''}`}

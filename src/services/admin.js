@@ -1,7 +1,7 @@
 import api from './api';
 
 export const adminService = {
-  // ========== USUARIOS ==========
+  ///// ========== USUARIOS ==========
   getUsers: () => api.get('/usuarios/'),
   createUser: (userData) => api.post('/usuarios/', userData),
   getUserById: (id) => api.get(`/usuarios/${id}`),
@@ -11,7 +11,7 @@ export const adminService = {
   countUsers: () => api.get('/usuarios/count'),
   getUserByEmail: (email) => api.get(`/usuarios/email/${email}`),
 
-  // ========== PRODUCTOS ==========
+  ///// ========== PRODUCTOS ==========
   getProducts: (page = 1, limit = 100) => api.get(`/productos/?page=${page}&limit=${limit}`),
   createProduct: (productData) => api.post('/productos/', productData),
   getProductById: (id) => api.get(`/productos/${id}`),
@@ -22,7 +22,7 @@ export const adminService = {
   getProductsByCategory: (category) => api.get(`/productos/categoria/${category}`),
   getProductCategories: () => api.get('/productos/categorias/'),
 
-  // ========== CATEGORÍAS ==========
+  ///// ========== CATEGORÍAS ==========
   getCategories: () => api.get('/categorias/'),
   createCategory: (categoryData) => api.post('/categorias/', categoryData),
   getCategoryById: (id) => api.get(`/categorias/${id}`),
@@ -31,7 +31,7 @@ export const adminService = {
   searchCategories: (query) => api.get(`/categorias/search/?q=${query}`),
   countCategories: () => api.get('/categorias/count'),
 
-  // ========== PEDIDOS ==========
+  ///// ========== PEDIDOS ==========
   getOrders: (page = 1, limit = 100) => api.get(`/pedidos/?page=${page}&limit=${limit}`),
   createOrder: (orderData) => api.post('/pedidos/', orderData),
   getOrderById: (id) => api.get(`/pedidos/${id}`),
@@ -42,7 +42,7 @@ export const adminService = {
   getUserOrders: (userId) => api.get(`/pedidos/usuario/${userId}`),
   updateOrderStatus: (id, estado) => api.put(`/pedidos/${id}/estado`, { estado }),
 
-  // ========== CARRITO ==========
+  ///// ========== CARRITO ==========
   getCarts: () => api.get('/carrito/'),
   createCart: (cartData) => api.post('/carrito/', cartData),
   getCartById: (id) => api.get(`/carrito/${id}`),
@@ -53,7 +53,7 @@ export const adminService = {
   getUserCart: (userId) => api.get(`/carrito/usuario/${userId}`),
   clearUserCart: (userId) => api.delete(`/carrito/usuario/${userId}/clear`),
 
-  // ========== PAGOS ==========
+  ///// ========== PAGOS ==========
   getPayments: () => api.get('/pagos/'),
   createPayment: (paymentData) => api.post('/pagos/', paymentData),
   getPaymentById: (id) => api.get(`/pagos/${id}`),
@@ -62,7 +62,7 @@ export const adminService = {
   searchPayments: (query) => api.get(`/pagos/search/?q=${query}`),
   countPayments: () => api.get('/pagos/count'),
 
-  // ========== RESEÑAS ==========
+  ///// ========== RESEÑAS ==========
   getReviews: () => api.get('/reseñas/'),
   createReview: (reviewData) => api.post('/reseñas/', reviewData),
   getReviewById: (id) => api.get(`/reseñas/${id}`),
@@ -71,7 +71,7 @@ export const adminService = {
   searchReviews: (query) => api.get(`/reseñas/search/?q=${query}`),
   countReviews: () => api.get('/reseñas/count'),
 
-  // ========== DIRECCIONES ==========
+  ///// ========== DIRECCIONES ==========
   getAddresses: () => api.get('/direcciones/'),
   createAddress: (addressData) => api.post('/direcciones/', addressData),
   getAddressById: (id) => api.get(`/direcciones/${id}`),
@@ -80,7 +80,7 @@ export const adminService = {
   searchAddresses: (query) => api.get(`/direcciones/search/?q=${query}`),
   countAddresses: () => api.get('/direcciones/count'),
 
-  // ========== CUPONES ==========
+  ///// ========== CUPONES ==========
   getCoupons: () => api.get('/cupones/'),
   createCoupon: (couponData) => api.post('/cupones/', couponData),
   getCouponById: (id) => api.get(`/cupones/${id}`),
@@ -89,7 +89,7 @@ export const adminService = {
   searchCoupons: (query) => api.get(`/cupones/search/?q=${query}`),
   countCoupons: () => api.get('/cupones/count'),
 
-  // ========== ESTADÍSTICAS COMPLETAS ==========
+  ///// ========== ESTADÍSTICAS COMPLETAS ==========
   getDashboardStats: async () => {
     try {
       const [
@@ -112,12 +112,12 @@ export const adminService = {
         adminService.getAddresses().catch(() => ({ data: [] }))
       ]);
 
-      // Calcular total de ventas (sumando pagos)
+      ///// Calcular total de ventas (sumando pagos)
       const totalSales = paymentsRes.data?.reduce((sum, payment) => 
         sum + (payment.monto || 0), 0
       ) || 0;
 
-      // Calcular pedidos por estado
+      ///// Calcular pedidos por estado
       const ordersByStatus = ordersRes.data?.reduce((acc, order) => {
         const status = order.estado || 'pendiente';
         acc[status] = (acc[status] || 0) + 1;
@@ -179,7 +179,7 @@ export const adminService = {
     }
   },
 
-  // ========== OPERACIONES BATCH ==========
+  ///// ========== OPERACIONES BATCH ==========
   bulkDelete: async (entity, ids) => {
     const promises = ids.map(id => 
       adminService[`delete${entity}`](id).catch(() => null)

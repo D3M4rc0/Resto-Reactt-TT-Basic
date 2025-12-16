@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react'
 
 const AppContext = createContext()
 
-// Tipos de acciones
+///// Tipos de acciones
 export const APP_ACTIONS = {
   SET_LOADING: 'SET_LOADING',
   SET_ERROR: 'SET_ERROR',
@@ -15,7 +15,7 @@ export const APP_ACTIONS = {
   ADD_TO_RECENTLY_VIEWED: 'ADD_TO_RECENTLY_VIEWED'
 }
 
-// Estado inicial
+///// Estado inicial
 const initialState = {
   loading: false,
   error: null,
@@ -36,7 +36,7 @@ const initialState = {
   notifications: []
 }
 
-// Reducer
+///// Reducer
 const appReducer = (state, action) => {
   switch (action.type) {
     case APP_ACTIONS.SET_LOADING:
@@ -110,7 +110,7 @@ const appReducer = (state, action) => {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState)
 
-  // Cargar preferencias del usuario desde localStorage
+  ///// Cargar preferencias del usuario desde localStorage
   useEffect(() => {
     const savedPreferences = localStorage.getItem('app-preferences')
     if (savedPreferences) {
@@ -142,29 +142,29 @@ export const AppProvider = ({ children }) => {
     if (savedRecentlyViewed) {
       try {
         const recentlyViewed = JSON.parse(savedRecentlyViewed)
-        // No dispatch aquí, solo cargar en estado inicial si es necesario
+        ///// No dispatch aquí, solo cargar en estado inicial si es necesario
       } catch (error) {
         console.error('Error loading recently viewed:', error)
       }
     }
   }, [])
 
-  // Guardar preferencias en localStorage cuando cambien
+  ///// Guardar preferencias en localStorage cuando cambien
   useEffect(() => {
     localStorage.setItem('app-preferences', JSON.stringify(state.userPreferences))
   }, [state.userPreferences])
 
-  // Guardar búsquedas recientes
+  ///// Guardar búsquedas recientes
   useEffect(() => {
     localStorage.setItem('recent-searches', JSON.stringify(state.recentSearches))
   }, [state.recentSearches])
 
-  // Guardar productos vistos recientemente
+  ///// Guardar productos vistos recientemente
   useEffect(() => {
     localStorage.setItem('recently-viewed', JSON.stringify(state.recentlyViewed))
   }, [state.recentlyViewed])
 
-  // Actions
+  ///// Actions
   const setLoading = (loading) => {
     dispatch({ type: APP_ACTIONS.SET_LOADING, payload: loading })
   }
@@ -206,10 +206,10 @@ export const AppProvider = ({ children }) => {
   }
 
   const value = {
-    // State
+    ///// State
     ...state,
     
-    // Actions
+    ///// Actions
     setLoading,
     setError,
     clearError,

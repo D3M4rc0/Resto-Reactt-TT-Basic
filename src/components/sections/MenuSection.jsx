@@ -5,13 +5,13 @@ import Loading from '../ui/Loading'
 import { useNavigate } from 'react-router-dom'
 
 const MenuSection = () => {
-  const { products, loading, error } = useProducts(1, 9) // 9 productos para 3x3 grid
+  const { products, loading, error } = useProducts(1, 9) ///// 9 productos para 3x3 grid
   const navigate = useNavigate()
   const [displayedProducts, setDisplayedProducts] = useState([])
 
   useEffect(() => {
     if (products.length > 0) {
-      setDisplayedProducts(products.slice(0, 9)) // Mostrar primeros 9 productos
+      setDisplayedProducts(products.slice(0, 9)) ///// Mostrar primeros 9 productos
     }
   }, [products])
 
