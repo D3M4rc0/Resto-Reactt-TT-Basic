@@ -229,7 +229,7 @@ export const authService = {
   ///// Verificar token 
   verifyToken: () => api.get('/auth/verify'),
   
-  ///// Logout 
+  ///// Logout - Tu API NO tiene este endpoint, así que lo manejamos localmente
   logout: () => {
     ///// Limpiar localStorage
     localStorage.removeItem('token')
