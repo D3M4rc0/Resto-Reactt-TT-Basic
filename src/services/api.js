@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 const API_BASE_URL = import.meta.env.PROD 
   ? '/api/v1'  // Proxy de Vercel
   : (import.meta.env.VITE_API_BASE_URL || 'https://api-resto-datasuitepro-production.up.railway.app/api/v1')
@@ -8,6 +7,8 @@ const API_BASE_URL = import.meta.env.PROD
 const TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 10000
 
 console.log('🔧 API Base URL:', API_BASE_URL)
+console.log('🌍 Environment:', import.meta.env.MODE)
+console.log('🚀 Production:', import.meta.env.PROD)
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -18,7 +19,7 @@ const api = axios.create({
   timeout: TIMEOUT,
   withCredentials: false,
   // Forzar que axios use el adaptador XHR con HTTPS estricto
-  adapter: 'xhr',
+  adapter: import.meta.env.PROD ? undefined : 'xhr', // Solo en desarrollo
   maxRedirects: 0, // No seguir redirects HTTP->HTTPS
 })
 
@@ -29,8 +30,13 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
-    console.log(`🔄 API Call: ${config.method?.toUpperCase()} ${config.url}`)
-    console.log(`🔧 Full URL: ${config.baseURL}${config.url}`)
+    
+    // Solo mostrar logs en desarrollo para no saturar Vercel
+    if (!import.meta.env.PROD) {
+      console.log(`🔄 API Call: ${config.method?.toUpperCase()} ${config.url}`)
+      console.log(`🔧 Full URL: ${config.baseURL}${config.url}`)
+    }
+    
     return config
   },
   (error) => {
@@ -42,7 +48,10 @@ api.interceptors.request.use(
 ///// Interceptor para manejar errores
 api.interceptors.response.use(
   (response) => {
-    console.log(`✅ API Success: ${response.status} ${response.config.url}`)
+    // Solo mostrar logs en desarrollo
+    if (!import.meta.env.PROD) {
+      console.log(`✅ API Success: ${response.status} ${response.config.url}`)
+    }
     return response
   },
   (error) => {
@@ -229,7 +238,7 @@ export const authService = {
   ///// Verificar token 
   verifyToken: () => api.get('/auth/verify'),
   
-  ///// Logout - Tu API NO tiene este endpoint, así que lo manejamos localmente
+  ///// Logout - Mi API NO tiene este endpoint, así que lo manejamos localmente
   logout: () => {
     ///// Limpiar localStorage
     localStorage.removeItem('token')
