@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { productService, categoryService } from '../services/api'
+import { formatProductData } from '../utils/apiHelpers'
+
 
 export const useSearchData = () => {
   const [searchIndex, setSearchIndex] = useState([])
@@ -22,14 +24,19 @@ export const useSearchData = () => {
         const index = []
 
         // Agregar productos
-        productsData.forEach(product => {
-          index.push({
-            type: 'product',
-            name: product.nombre,
-            id: product.id,
-            action: `/menu?search=${encodeURIComponent(product.nombre)}`
-          })
-        })
+		const formattedProducts = productsData
+		  .map(formatProductData)
+		  .filter(Boolean)
+
+		formattedProducts.forEach(product => {
+		  index.push({
+			type: 'product',
+			name: product.nombre,
+			id: product.id,
+			action: `/menu?search=${encodeURIComponent(product.nombre)}`
+		  })
+		})
+
 
         // Agregar categorías
         categoriesData.forEach(category => {
