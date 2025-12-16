@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-// ✅ URL siempre con HTTPS (Railway siempre usa HTTPS)
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
-  'https://api-resto-datasuitepro-production.up.railway.app/api/v1'
+
+const API_BASE_URL = import.meta.env.PROD 
+  ? '/api/v1'  // Proxy de Vercel
+  : (import.meta.env.VITE_API_BASE_URL || 'https://api-resto-datasuitepro-production.up.railway.app/api/v1')
 
 const TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 10000
 
@@ -15,7 +16,10 @@ const api = axios.create({
     'Accept': 'application/json',
   },
   timeout: TIMEOUT,
-  withCredentials: false, // Importante para CORS
+  withCredentials: false,
+  // Forzar que axios use el adaptador XHR con HTTPS estricto
+  adapter: 'xhr',
+  maxRedirects: 0, // No seguir redirects HTTP->HTTPS
 })
 
 ///// Interceptor para agregar token de autenticación
@@ -62,18 +66,18 @@ api.interceptors.response.use(
 
 ///// Servicio de Productos
 export const productService = {
-  ///// Obtener todos los productos (27 productos)
+  /////  todos los productos (27 productos)
   getAllProducts: () => api.get('/productos/?limit=27'),
   
-  ///// Obtener productos paginados (9 por página)
+  /////  productos paginados (9 por página)
   getProducts: (page = 1, limit = 9) => 
     api.get(`/productos/?page=${page}&limit=${limit}`),
   
-  ///// Obtener producto por ID
+  /////  producto por ID
   getProductById: (id) => 
     api.get(`/productos/${id}`),
   
-  ///// Obtener productos por categoría
+  /////  productos por categoría
   getProductsByCategory: (category, page = 1, limit = 9) => 
     api.get(`/productos/?categoria=${category}&page=${page}&limit=${limit}`),
   
@@ -81,47 +85,47 @@ export const productService = {
   searchProducts: (query, page = 1, limit = 9) => 
     api.get(`/productos/?search=${query}&page=${page}&limit=${limit}`),
   
-  ///// Obtener productos destacados (para especialidades del chef)
+  /////  productos destacados (para especialidades del chef)
   getFeaturedProducts: () => 
     api.get('/productos/?limit=8'),
   
-  ///// Obtener productos en oferta (para sección ofertas)
+  ///// productos en oferta (para sección ofertas)
   getOffers: () => 
     api.get('/productos/?limit=8')
 }
 
 ///// Servicio de Categorías
 export const categoryService = {
-  ///// Obtener todas las categorías (13 categorías)
+  /////  todas las categorías (13 categorías)
   getCategories: () => api.get('/categorias'),
   
-  ///// Obtener categoría por ID
+  /////  categoría por ID
   getCategoryById: (id) => api.get(`/categorias/${id}`),
   
-  ///// Obtener productos de una categoría específica
+  /////  productos de una categoría específica
   getCategoryProducts: (categoryId) => 
     api.get(`/productos/?categoria_id=${categoryId}`)
 }
 
 ///// Servicio de Usuarios
 export const userService = {
-  ///// Obtener información del usuario actual
+  /////  información del usuario actual
   getCurrentUser: () => api.get('/auth/me'),
   
   ///// Actualizar perfil de usuario
   updateProfile: (userData) => 
     api.put('/auth/me', userData),
   
-  ///// Obtener todos los usuarios (12 usuarios - solo admin)
+  /////  todos los usuarios (12 usuarios - solo admin)
   getUsers: () => api.get('/usuarios')
 }
 
 ///// Servicio de Reseñas
 export const reviewService = {
-  ///// Obtener todas las reseñas (10 reseñas)
+  /////  todas las reseñas (10 reseñas)
   getReviews: () => api.get('/reseñas'),
   
-  ///// Obtener reseñas de un producto específico
+  /////  reseñas de un producto específico
   getProductReviews: (productId) => 
     api.get(`/reseñas/?producto_id=${productId}`),
   
@@ -129,14 +133,14 @@ export const reviewService = {
   createReview: (reviewData) => 
     api.post('/reseñas', reviewData),
   
-  ///// Obtener reseñas del usuario actual
+  /////  reseñas del usuario actual
   getUserReviews: (userId) => 
     api.get(`/reseñas/?usuario_id=${userId}`)
 }
 
 ///// Servicio de Carrito
 export const cartService = {
-  ///// Obtener carrito del usuario
+  /////  carrito del usuario
   getCart: (userId) => 
     api.get(`/carrito/?usuario_id=${userId}`),
   
@@ -159,7 +163,7 @@ export const cartService = {
 
 ///// Servicio de Pedidos
 export const orderService = {
-  ///// Obtener pedidos del usuario
+  /////  pedidos del usuario
   getUserOrders: (userId) => 
     api.get(`/pedidos/?usuario_id=${userId}`),
   
@@ -167,7 +171,7 @@ export const orderService = {
   createOrder: (orderData) => 
     api.post('/pedidos', orderData),
   
-  ///// Obtener detalles de un pedido
+  /////  detalles de un pedido
   getOrderById: (orderId) => 
     api.get(`/pedidos/${orderId}`),
   
@@ -212,7 +216,7 @@ export const authService = {
     })
   },
   
-  ///// Obtener información del usuario actual
+  /////  información del usuario actual
   getMe: () => api.get('/auth/me'),
   
   ///// Actualizar perfil del usuario actual
@@ -222,10 +226,10 @@ export const authService = {
   refreshToken: (refreshToken) => 
     api.post(`/auth/refresh?refresh_token=${refreshToken}`),
   
-  ///// Verificar token (si existe en tu API)
+  ///// Verificar token 
   verifyToken: () => api.get('/auth/verify'),
   
-  ///// Logout - Tu API NO tiene este endpoint, así que lo manejamos localmente
+  ///// Logout 
   logout: () => {
     ///// Limpiar localStorage
     localStorage.removeItem('token')
@@ -236,7 +240,7 @@ export const authService = {
 
 ///// Servicio de Cupones
 export const couponService = {
-  ///// Obtener todos los cupones
+  /////  todos los cupones
   getCoupons: () => api.get('/cupones'),
   
   ///// Validar cupón
@@ -254,7 +258,7 @@ export const paymentService = {
   processPayment: (paymentData) => 
     api.post('/pagos', paymentData),
   
-  ///// Obtener historial de pagos
+  /////  historial de pagos
   getPaymentHistory: (userId) => 
     api.get(`/pagos/?usuario_id=${userId}`)
 }
