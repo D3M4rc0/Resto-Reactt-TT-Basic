@@ -1,9 +1,6 @@
 import axios from 'axios'
 
-// URL base corregida - Mantener HTTPS siempre
-const API_BASE_URL = import.meta.env.PROD 
-  ? '/api/v1'  // Proxy de Vercel
-  : (import.meta.env.VITE_API_BASE_URL || 'https://api-resto-datasuitepro-production.up.railway.app/api/v1')
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api-resto-datasuitepro-production.up.railway.app/api/v1'
 
 const TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 10000
 
@@ -19,12 +16,9 @@ const api = axios.create({
   },
   timeout: TIMEOUT,
   withCredentials: false,
-  // Configuración para evitar seguir redirecciones HTTP
-  maxRedirects: 0,
-  // Forzar que no siga redirecciones a HTTP
-  validateStatus: function (status) {
-    return status >= 200 && status < 300 || status === 304;
-  }
+  // Forzar que axios use el adaptador XHR con HTTPS estricto
+  adapter: import.meta.env.PROD ? undefined : 'xhr', // Solo en desarrollo
+  maxRedirects: 0, // No seguir redirects HTTP->HTTPS
 })
 
 ///// Interceptor para agregar token de autenticación
@@ -35,10 +29,7 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`
     }
     
-    // Agregar headers para evitar redirecciones CORS
-    config.headers['X-Requested-With'] = 'XMLHttpRequest'
-    
-    // Solo mostrar logs en desarrollo
+    // Solo mostrar logs en desarrollo para no saturar Vercel
     if (!import.meta.env.PROD) {
       console.log(`🔄 API Call: ${config.method?.toUpperCase()} ${config.url}`)
       console.log(`🔧 Full URL: ${config.baseURL}${config.url}`)
@@ -62,12 +53,6 @@ api.interceptors.response.use(
     return response
   },
   (error) => {
-    // Error específico de redirección HTTPS->HTTP
-    if (error.message && error.message.includes('redirected')) {
-      console.error('🚨 REDIRECTION ERROR: Railway está redirigiendo HTTPS a HTTP')
-      console.error('💡 Esto es un problema del backend en Railway')
-    }
-    
     console.error('❌ API Error Details:', {
       status: error.response?.status,
       url: error.config?.url,
@@ -251,7 +236,7 @@ export const authService = {
   ///// Verificar token 
   verifyToken: () => api.get('/auth/verify'),
   
-  ///// Logout - Tu API NO tiene este endpoint, así que lo manejamos localmente
+  ///// Logout - MI API NO tiene este endpoint, así que lo manejamos localmente
   logout: () => {
     ///// Limpiar localStorage
     localStorage.removeItem('token')

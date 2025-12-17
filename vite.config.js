@@ -19,7 +19,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        quietDeps: true, // Silencia advertencias de SASS
+        quietDeps: true, // Silencia advertencias de SASS... no funciona me parece xd
       }
     }
   },
