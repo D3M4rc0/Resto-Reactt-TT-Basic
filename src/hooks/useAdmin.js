@@ -31,14 +31,18 @@ export const useAdmin = () => {
         adminService.getOrders(1, 100)
       ]);
 
-      setStats(statsData);
-      setEntities(prev => ({
-        ...prev,
-        users: usersData.data || [],
-        products: productsData.data || [],
-        categories: categoriesData.data || [],
-        orders: ordersData.data || []
-      }));
+		setStats(statsData);
+		setEntities(prev => ({
+		  ...prev,
+		  users: usersData.data || [],
+		  products: productsData.data || [],
+		  categories: (categoriesData.data || []).map(c => ({
+			...c,
+			activa: c.activa ?? c.activo ?? false
+		  })),
+		  orders: ordersData.data || []
+		}));
+
     } catch (err) {
       console.error('Error loading dashboard data:', err);
       setError(err.message || 'Error al cargar datos del dashboard');
@@ -86,10 +90,16 @@ export const useAdmin = () => {
           throw new Error(`Entidad desconocida: ${entityName}`);
       }
 
-      setEntities(prev => ({
-        ...prev,
-        [entityName]: response.data || []
-      }));
+		setEntities(prev => ({
+		  ...prev,
+		  [entityName]:
+			entityName === 'categories'
+			  ? (response.data || []).map(c => ({
+				  ...c,
+				  activa: c.activa ?? c.activo ?? false
+				}))
+			  : response.data || []
+		}));
 
       return response.data || [];
     } catch (err) {
