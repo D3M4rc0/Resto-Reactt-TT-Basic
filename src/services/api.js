@@ -104,10 +104,10 @@ export const productService = {
 ///// Servicio de Categorías
 export const categoryService = {
   /////  todas las categorías (13 categorías)
-  getCategories: () => api.get('/categorias'),
+  getCategories: () => api.get('/categorias/'),
   
   /////  categoría por ID
-  getCategoryById: (id) => api.get(`/categorias/${id}`),
+  getCategoryById: (id) => api.get(`/categorias/${id}/`),
   
   /////  productos de una categoría específica
   getCategoryProducts: (categoryId) => 
@@ -130,11 +130,11 @@ export const userService = {
 ///// Servicio de Reseñas
 export const reviewService = {
   /////  todas las reseñas (10 reseñas)
-  getReviews: () => api.get('/reseñas'),
+  getReviews: () => api.get('/reseñas/'),
   
   /////  reseñas de un producto específico
   getProductReviews: (productId) => 
-    api.get(`/reseñas/?producto_id=${productId}`),
+    api.get(`/reseñas/?producto_id=${productId}/`),
   
   ///// Crear nueva reseña
   createReview: (reviewData) => 
